@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ffmpeg切片转换</title>
+    <style type="text/css">
+    	body,h3,h4,h5,p,div{
+    		margin: 0px;
+    		padding: 0px;
+    	}
+    	li{
+    		min-height: 80px;
+    		height: auto;
+    		padding: 10px 0px;
+    		border-bottom: 1px solid #ccc;
+    	}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ol id="list" type="1">
+            <h3>视频格式转化操作步骤：</h3>
+            <li>
+                <h4>如果视频不是mp4格式，需要先将视频转换为mp4，可以使用如下命令进行转换：</h4>
+                <p>ffmpeg -i 本地视频地址 -y -c:v libx264 -strict -2 转换视频.mp4</p>
+                <input type="text" placeholder="请输入文件的信息" value="">
+        		<input type="button" value="开始生成">
+        		<div class="content"></div>
+            </li>
+            <li>
+                <h4>将mp4格式转化为ts格式，可以使用如下命令进行转换:</h4>
+                <p>ffmpeg -y -i 本地视频.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb 转换视频.ts</p>
+                <input type="text" placeholder="请输入文件的信息" value="">
+        		<input type="button" value="开始生成">
+        		<div class="content"></div>
+            </li>
+            <li>
+                <h4>将ts文件进行切片，可以使用如下命令进行转换:</h4>
+                <h5>其中segment就是切片，-segment_time表示隔几秒进行切一个文件，上面命令是隔5秒，你也可以调整为更大的参数。</h5>
+                <p>ffmpeg -i 本地视频.ts -c copy -map 0 -f segment -segment_list 视频索引.m3u8 -segment_time 5 前缀-%03d.ts</p>
+                <input type="text" placeholder="请输入文件的信息" value="">
+        		<input type="button" value="开始生成">
+        		<div class="content"></div>
+            </li>
+            <li>
+                <h4>mov转化成mp4</h4>
+                <p>ffmpeg -i movie.mov -vcodec copy -acodec copy out.mp4</p>
+                <input type="text" placeholder="请输入文件的信息" value="">
+                <input type="button" value="开始生成">
+                <div class="content"></div>
+            </li>
+        </ol>
+        <script>
+        	var oOl = document.getElementById("list");
+        	var aLi = oOl.getElementsByTagName("li");
+        	var aInp = oOl.getElementsByTagName("input");
+        	var aDiv = oOl.getElementsByClassName("content");
+        	for(var i = 0; i < aInp.length; i++) {
+        		aInp[1].onclick = function (url) {
+                	var url = aInp[0].value;
+                	aDiv[0].innerHTML = 'ffmpeg -i ' + url + ' -y -c:v libx264 -strict -2 ' + url+ '.mp4';
+            	}
+        	}
+        	for(var i = 0; i < aInp.length; i++) {
+        		aInp[3].onclick = function (url) {
+                	var url = aInp[2].value;
+                	aDiv[1].innerHTML = 'ffmpeg -y -i ' + url + '.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb ' + url + '.ts';
+            	}
+        	}
+        	for(var i = 0; i < aInp.length; i++) {
+        		aInp[5].onclick = function (url) {
+                	var url = aInp[4].value;
+                	aDiv[2].innerHTML = 'ffmpeg -i ' + url + '.ts -c copy -map 0 -f segment -segment_list ' + url + '.m3u8 -segment_time 20 ' + url + '-%03d.ts';
+            	}
+        	}
+            for(var i = 0; i < aInp.length; i++) {
+                aInp[7].onclick = function (url) {
+                    var url = aInp[6].value;
+                    aDiv[3].innerHTML = 'ffmpeg -i ' + url +'.mov -vcodec copy -acodec copy ' + url + '.mp4';
+                }
+            }
+        </script>
+    </div>    
+</body>
+</html>

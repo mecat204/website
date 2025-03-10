@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<title>网络技术收藏</title>
+<style type="text/css">
+  body,h3,ul,li{
+    margin: 0;
+    padding: 0;
+  }
+  h3{
+    text-align: center;
+    margin-bottom: 10px;
+    color: #347EFF;
+    font-weight: bolder;
+  }
+  body{
+    width: 1366px;
+  }
+  #time{
+    color: #347EFF;
+    font-weight: bolder;
+  }
+  ul{
+    width: auto;
+    list-style: none;
+    margin: auto 20px;
+  }
+  li{
+    width: 434px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    float: left;
+    margin: 3px;
+    text-align: center;
+    border: 1px solid #82ae46;
+    border-radius: 5px;
+  }
+  li a{
+    text-decoration: none;
+    color: #347EFF;
+    display:block;
+  }
+  li a:hover{
+    color:#0022FF;
+    font-weight:bold;
+  }
+</style>
+<script type="text/javascript">
+  window.onload = function(){
+    var time = document.getElementById("time");
+    setInterval(fnTime,1000);
+    fnTime();
+    function fnTime(){
+      var myTime = new Date();
+      var iYear = myTime.getFullYear();
+      var iMon = myTime.getMonth() + 1;
+      var iDate = myTime.getDate();
+      var iWeek = myTime.getDay();
+      var iH = myTime.getHours();
+      var iMin = myTime.getMinutes();
+      var iSec = myTime.getSeconds();
+      var str = "";
+      if( iWeek === 0 ) iWeek = '星期日 Sunday';
+      if( iWeek === 1 ) iWeek = '星期一 Monday';
+      if( iWeek === 2 ) iWeek = '星期二 Tuesday';
+      if( iWeek === 3 ) iWeek = '星期三 Wednesday';
+      if( iWeek === 4 ) iWeek = '星期四 Thursday';
+      if( iWeek === 5 ) iWeek = '星期五 Friday';
+      if( iWeek === 6 ) iWeek = '星期六 Saturday';
+      str = iYear + '年' + fn1(iMon) + '月' + fn1(iDate) + '日 ' + iWeek + ' ' + fn1(iH) + ':' + fn1(iMin) + ':' + fn1(iSec);
+      time.innerHTML = str;
+    }
+    function fn1(n){
+      return n < 10 ? '0' + n:n;
+    }
+
+  }
+</script>
+<body>
+  <div id="time"></div>
+<h3>网络技术收藏</h3>
+<ul>
+    <li><a href="/website/images/Git命令实现本地文件推送到git仓库.png" title="Git命令实现本地文件推送到git仓库.png">Git命令实现本地文件推送到git仓库</a></li>
+    <li><a href="/website/images/HttpRequestException encountered.png" title="HttpRequestException encountered.png">HttpRequestException encountered</a></li>
+    <li><a href="/website/images/chrome___extensions_.png" title="chrome___extensions_.png">chrome___extensions</a></li>
+    <li><a href="/website/images/git-ssh.png" title="git-ssh.png">git-ssh.png</a></li>
+    <li><a href="/website/images/github.com_zpandame_navigation.png" title="github.com_zpandame_navigation.png">github.com_zpandame_navigation</a></li>
+    <li><a href="/website/images/git公钥的问题.png" title="git公钥的问题.png">git公钥的问题</a></li>
+    <li><a href="/website/images/上传更新文件到github.png" title="上传更新文件到github.png">上传更新文件到github</a></li>
+    <li><a href="/website/images/修改Git comit的信息.png" title="修改Git comit的信息.png">修改Git comit的信息</a></li>
+    <li><a href="/website/images/如何解决failed to push some refs to git.png" title="如何解决failed to push some refs to>如何解决failed to push some refs to</a></li> git.png"
+    <li><a href="/website/images/解决github偶尔无法访问的问题.png" title="解决github偶尔无法访问的问题.png">解决github偶尔无法访问的问题</a></li>
+    </ul>
+</body>
+</html>

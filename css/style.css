@@ -1,0 +1,154 @@
+@charset "utf-8";
+/* CSS Document */
+html {
+	font-family:宋体;
+	font-size: 14px;
+	text-align: center;
+	line-height: 20px;
+	height: 20px;
+	color: red;
+	margin:0;
+	padding:0;
+	text-decoration: none;
+}
+body{
+	width:auto;
+	height: auto;
+	background:#fff;
+}
+#time{
+	width: 100%;
+	height: 120px;
+	position: fixed;
+	top: 0px;
+	z-index: 200;
+}
+#system_time{
+	position: absolute;
+ 	left: 5px;
+ 	top: 5px;
+ 	font-weight:bold;
+    	color:red;
+}
+#time a{
+	text-decoration: none;
+}
+
+#countdown{
+	position: absolute;
+ 	right: -70px;
+ 	top:5px;
+ 	width: 400px;
+ 	font-weight:bold;
+	color:red;
+}
+
+.t1{
+	overflow:hidden;
+ 	width: 320px;
+ 	background:rgba(255, 255, 255, 0);
+	border:none;
+ 	font-weight:bold;
+ 	text-align:center;
+	margin-left: 15px;
+	color: #0022FF;
+}
+
+#container{
+	width: 100%;
+	height: auto;
+	margin-top: 10px;
+}
+#container h4{
+	margin-top: 50px;
+	color:#82ae46;
+	margin-bottom: 5px;
+}
+#nav{
+	width:140px;
+	height: auto;
+ 	position:fixed;
+ 	left: 0px;
+	top: 70px;
+
+}
+#nav .list{
+	position: absolute;
+	width: 100%;
+	top : 0px;
+	left: -40px;
+	list-style:none;
+ 	overflow:hidden;
+	margin-top: 40px;
+}
+#nav a{
+	width:100%;
+	display: inline-block;
+	text-align: center;
+	margin-bottom: 10px;
+	color:#82ae46;
+}
+#nav a:hover{
+	color: blue;
+	font-weight: bolder;
+}
+
+#content{
+	width: 82%;
+	margin: 0px;
+	padding: 0px;
+	height: auto;
+	position: absolute;
+	left:140px;
+	/* border: 2px solid blue; */
+}
+#content .template{
+	width: 100%;
+ 	height:auto;
+ 	border:2px solid #82ae46;
+ 	border-radius: 5px;
+ 	left:0px;
+ 	margin-bottom: 10px;
+	position: relative;
+}
+
+/*上右下左*/ /*高度自适应*/
+#content .list{
+	list-style:none;
+ 	width:auto;
+ 	overflow:hidden;
+	margin-top: 40px;
+
+ }
+
+
+#content li{
+	width: 130px;
+ 	border:1px solid #82ae46;
+ 	margin:3px;
+ 	border-radius: 3px;
+	display:inline-block;
+	padding: 2px;
+}
+
+#content .title {
+	position: absolute;
+	left: 20px;
+	top: 20px;
+}
+
+#content span a:hover{
+	color:blue;
+ 	font-weight:bold;
+}
+
+#nav a, #content a{
+	color:#0b0b0b;
+ 	display:block;
+ 	text-decoration:none;
+}
+#content a:hover{
+	color:#0022FF;
+	/* font-size: 14px; */
+ 	font-weight:bold;
+}

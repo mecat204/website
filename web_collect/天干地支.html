@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>天干地支</title>
+	<script type="text/javascript">
+		window.onload = function () {
+			var str1 = '甲乙丙丁戊己庚辛壬癸';
+			var str2 = '子丑寅卯辰巳午未申酉戌亥';
+			var arr1 = str1.split('');
+			var arr2 = str2.split('');
+			var str0 = ""; 
+			var str = "";
+			
+			/*
+			开始之前，先把字符串变为
+			'癸甲乙丙丁戊己庚辛壬',
+			'亥子丑寅卯辰巳午未申酉戌'.
+			*/
+			
+			arr1.unshift(arr1.pop());
+			arr2.unshift(arr2.pop());
+			/*
+				setInterval(function(){},1000);可以无限循环不停止，知道遇到clearInterval();
+				但是显然不太好控制循环的次数，在这里就可以结合匿名函数自执行和闭包来解决这个问题。
+			*/
+
+			for(var i = 0; i < 120; i++) {
+				(function(e){
+					setTimeout(function(){
+						Run();
+					},30*e);	
+				})(i)
+			}	
+			
+			function Run(){
+				arr1.push(arr1.shift());
+				arr2.push(arr2.shift());
+				str = '<li>'+ arr1[0]+arr2[0] +'</li>';
+				var oUl = document.createElement('ul');
+				document.body.appendChild(oUl);
+				oUl.innerHTML = str0 + str;
+				oUl.style.cssText = `
+				list-style:none;
+				`;
+				var aLi = oUl.getElementsByTagName('li');
+				for (var i = 0; i < aLi.length; i++){
+					aLi[i].style.cssText = `
+						width: 100px;
+						height: 24px;
+						float:left;
+						line-height:24px;
+						text-align:center;
+						border: 1px solid #1E935D;
+						color: #5BACDB;
+						margin:2px;
+
+					`;
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+
+</body>
+</html>

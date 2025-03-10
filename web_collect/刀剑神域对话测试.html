@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刀剑神域·序列战争</title>
+    <style>
+        body{
+            background: url("images/bg.png") repeat;
+        }
+        #left,#right{
+            width:500px;
+            color:blueviolet;
+        }
+    </style>
+    /*<script src="./js/data_lt.js"></script>
+    <script src="./js/data_rt.js"></script>
+    <script src="./js/index.js"></script>*/
+    <script>
+    window.onload = function () {
+        var arr_text_rt = [
+            '我最近挺好的',
+            '还那样？',
+            '嗯嗯，是什么意思？',
+            '聊聊人生呗',
+            '不怎么样',
+            '我也想呀，但程序不允许呀。',
+            '我想也是，哈哈。',
+            '嗯嗯，确实挺有才的，也挺帅了。',
+            '确实挺辛苦的',
+            '嗯嗯，改天就给介绍',
+            '好好，我知道了，肯定要找一个好的',
+            '对的，身体是革命的本钱，好养好身体。',
+            '加油，看好你哦，么么哒！'
+        ];
+        var arr_text_lt = [
+            '你好吗？',
+            '最近工作还顺心吗？',
+            '嗯嗯',
+            '都不知道聊什么了？',
+            '你对象找的怎么样了？',
+            '为什么我们老是这样一问一答，你就不能问问我',
+            '哈哈,这小伙估计写不出来了',
+            '不要笑话小伙子了，小伙子长得也挺帅了，也挺有才了',
+            '忙碌了一个下午，饭还没吃。真辛苦',
+            '听说小伙还没对象呢，你认识人多，就给小伙介绍一个',
+            '又是改天，你说话能不能靠点谱',
+            '嗯嗯。小伙忙碌一天，赶紧去点吃饭吧',
+            '加油，看好你，么么哒',
+        ];
+        
+        var aImg = document.getElementsByClassName('images');
+        var aDiv = document.getElementsByClassName('text');
+        var oLt = document.getElementById('left');
+        var oRt = document.getElementById('right');
+        var len = arr_text_lt.length;
+        var str_lt = '';
+        var str_rt = '';
+        var str_text_lt = '';
+        var str_text_rt = '';
+        for (var i = 0; i < len; i++) {
+            (function (e) {
+                setTimeout(
+                    function () {
+                        str_text_lt = arr_text_lt[e];
+                        str_lt = '<img class="images">' + '<div class="text">' + str_text_lt + '</div>';
+                        oLt.innerHTML = str_lt;
+                        aDiv[0].style.cssText = 'height:300px; position:absolute;left:150px;top:10px; color:#FF6400;font-weight:bolder;';
+                        oLt.style.cssText = 'height:300px; position:absolute;left:10px;top:0px; color:red;';
+                        oRt.innerHTML = '<img class="images">';
+                        aImg[0].src = 'images/lt.png';
+                        aImg[0].style.cssText = 'height:300px; position:absolute;left:0px;top:0px;';
+                        aImg[1].src = '';
+                        iflag = 0;
+                    }, 6100 * e);
+            })(i);
+        }
+        for (var i = 0; i < len; i++) {
+            (function (e) {
+                setTimeout(
+                    function () {
+                        str_text_rt = arr_text_rt[e];
+                        str_rt = '<div class="text">' + str_text_rt + '</div>' + '<img class="images">';
+                        oRt.innerHTML = str_rt;
+                        aDiv[1].style.cssText = 'width:200px; position:absolute;right:20px;bottom:240px; color:#FF6400;font-weight:bolder;';
+                        oRt.style.cssText = 'height:300px; position:absolute;right:10px;bottom:0px; color:red;';
+                        oLt.innerHTML = '<img class="images">';
+                        aImg[1].src = 'images/rt.png';
+                        aImg[1].style.cssText = 'width:200px; position:absolute;right:0px;bottom:0px;';
+                        aImg[0].src = '';
+                        iflag = 1;
+                    }, 6100 * e + 3000);
+            })(i);
+        }
+    }
+    </script>
+</head>
+<body>
+    <div id="left">
+        <img class="left images">
+    </div>
+    <div id="right">
+        <img class="right images">
+    </div>
+</body>
+</html>

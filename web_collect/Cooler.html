@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>color_template</title>
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.js"></script>
+    <link rel="stylesheet" type="text/css" href="color_template.css">
+</head>
+<body>
+<ul id="list">
+    <li><a href="Cooler.html" title="Cooler">Cooler</li>
+    <li><a href="Fairy.html" title="Fairy">Fairy</li>
+    <li><a href="Haze.html" title="Haze">Haze</li>
+    <li><a href="Moss.html" title="Moss">Moss</li>
+    <li><a href="Sunset.html" title="Sunset">Sunset</li>
+    <li><a href="Docks.html" title="Docks">Docks</li>
+    <li><a href="Granite.html" title="Granite">Granite</li>
+    <li><a href="Slate.html" title="Slate">Slate</li>
+    <li><a href="Tangerine.html" title="Tangerine">Tangerine</li>
+</ul>
+<div id="app">
+    <h3>Cooler(冷色)</h3>
+    <span>Color Palette(调色板)</span>
+    <My_list></My_list>
+</div>
+<script>
+    Vue.component("My_list", {
+        data() {
+            return {
+                colorlist:[
+                    {color: "4DB5F2"},
+                    {color: "219BE8"},
+                    {color: "3E60C1"},
+                    {color: "5882F9"},
+                ]
+            }
+        },
+        template: `
+            <ul class="colorlist">
+                <li v-for="item in colorlist" v-bind:style="'background:#'+ item.color">
+                    <span>
+                        #{{ item.color }}
+                    </span>
+                </li>    
+            </ul>
+        `
+    })
+    var vm = new Vue({
+        el: '#app',
+    })
+</script>
+</body>
+</html>

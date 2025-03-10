@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>双色球简单测试</title>
+    <script>
+        window.onload = function() {
+            // var num = new Date().getSeconds();
+            // alert(new Date().getTime());
+            var timer = null;
+            var oContainer = document.createElement('div');
+            oContainer.id = 'container';
+            oContainer.style.cssText = 'position:absolute; width:324px; height:30px; border:1px solid green;';
+            document.body.appendChild(oContainer);
+            oContainer.onmouseover = function () {
+                clearInterval(timer);
+            }
+            oContainer.onmouseout = function () {
+                timer = setInterval(() => {
+                    oContainer.innerHTML = '';
+                    var aDiv = '';
+                    for (var i = 0; i < 6; i++) {
+                        var oDiv = document.createElement('div');
+                        oDiv.className = 'content';
+                        oDiv.innerHTML = parseInt(Math.random() * 32 + 1);
+                        aDiv[i] = oDiv;
+                        oDiv.style.cssText = "width:50px; height:30px; line-height:30px; text-align:center; border:1px solid red; float:left; margin-left:2px; position:relative; left:0px;";
+                        oContainer.appendChild(oDiv);
+                    }
+                    var blue = document.createElement('div');
+                    blue.innerHTML = parseInt(Math.random() * 16 + 1);
+                    blue.style.cssText = "width:50px; height:30px; line-height:30px; text-align:center; border:1px solid blue; position:absolute; right:-54px;";
+                    oContainer.appendChild(blue);
+                    document.body.appendChild(oContainer);
+                }, 1);
+            }
+                     
+        }
+    </script>
+</head>
+<body> 
+</body>
+</html>

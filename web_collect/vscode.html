@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="">
+    <link rel="shortcut icon" sizes="29x29" href="images/favicon.ico">
+    <style>
+    body,nav,div,ul,li{
+            margin: 0px;
+            padding: 0px;
+        }
+        nav{
+            width: 100%;
+            height: 29px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            background: #C4B7D7;
+        }
+        .log{
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 34px;
+            height: 29px;
+            text-align: center;
+            line-height: 29px;
+        }
+        img{
+            display: inline-block;
+            width: 17px;
+            height: 17px;
+        }
+        .list{
+            height: 29px;
+            list-style: none;
+            position: absolute;
+            left: 34px;
+        }
+        .list > li{
+            width:56px;
+            height: 29px;
+            font-size: 12px;
+            line-height: 29px;
+            text-align: center;
+            color: #333333;
+            float: left;
+            position: relative;
+        }
+        .list > li:hover{
+            background: #B0A4C1;
+        }
+        .list_content{
+            display: none;
+            list-style: none;
+        }
+        .list > li:hover > .list_content{
+            display: block;
+            position: absolute;
+            left: 0px;
+            top: 29px;
+            width: 306px;
+            height: auto;
+            list-style: none;
+            background: #F5F5F5;
+            
+        }
+        .list_content > li{
+            position: relative;
+            width: 306px;
+            height: auto;
+            /* border:1px solid red; */
+            padding: 8px 0px 8px 0px;
+            border-bottom: 1px solid #C9C9C9;
+        }
+        .list_content > li {
+            list-style: none;
+        }
+        .wrap > li{
+            width: 306px;
+            height: 23px;
+            list-style: none;
+            position:relative;
+        }
+        .wrap > li:hover{
+            background: #C4D9B1;
+        }
+        .left,.right{
+            position: absolute;
+            height: 23px;
+            line-height: 23px;
+            font-size: 12px;
+        }
+        .left{
+            left: 26px;
+        }
+        .right{
+            right: 26px;
+        }
+        .list_content > .exit{
+            border: 0px;
+        }
+
+        .tool_btn{
+            position: absolute;
+            right:0px;
+            width:138px;
+            height: 29px;
+        }
+        .tool{
+            list-style: none;
+        }
+        .tool li{
+            width:46px;
+            height: 29px;
+            text-align: center;
+            line-height: 29px;
+            float: left;
+        }
+        .tool li:hover{
+            background: #B0A4C1;
+        }
+        .tool img{
+            width:10px;
+            height: 10px;
+        }
+        .tool .min{
+            position: relative;
+            top:-5px;
+            height: 1px;
+        }
+    </style>
+    <title>vscode界面</title>
+</head>
+<body>
+    <nav>
+        <div class="log">
+            <img src="images/favicon.ico" alt="">
+        </div>
+        <ul class="list">
+            <li>
+                文件(F)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">新建文件</div>
+                                <div class="right">Ctrl+N</div>
+                            </li>
+                            <li>
+                                <div class="left">新建窗口</div>
+                                <div class="right">Ctrl+Shift+N</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">打开文件...</div>
+                                <div class="right">Ctrl+O</div>
+                            </li>
+                            <li>
+                                <div class="left">打开文件夹...</div>
+                                <div class="right">Ctrl+K Ctrl+O</div>
+                            </li>
+                            <li>
+                                <div class="left">打开工作区...</div>
+                            </li>
+                            <li>
+                                <div class="left">打开文件夹</div>
+                                <div class="right">></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">将文件夹添加到工作区...</div>
+                            </li>
+                            <li>
+                                <div class="left">将工作区另存为...</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">保存</div>
+                                <div class="right">Ctrl+S</div>
+                            </li>
+                            <li>
+                                <div class="left">另存为...</div>
+                                <div class="right">Ctrl+Shift+S</div>
+                            </li>
+                            <li>
+                                <div class="left">全部保存...</div>
+                                <div class="right">Ctrl+K S</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">自动保存</div>
+                            </li>
+                            <li>
+                                <div class="left">首选项</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">还原文件</div>
+                            </li>
+                            <li>
+                                <div class="left">关闭编辑器</div>
+                                <div class="right">Ctrl+K Ctrl+DownArrow</div>
+                            </li>
+                            <li>
+                                <div class="left">关闭文件夹</div>
+                                <div class="right">Ctrl+K F</div>
+                            </li>
+                            <li>
+                                <div class="left">关闭窗口</div>
+                                <div class="right">Ctrl+Shift+W</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">退出</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                编辑(E)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">撤销</div>
+                                <div class="right">Ctrl+Z</div>
+                            </li>
+                            <li>
+                                <div class="left">恢复</div>
+                                <div class="right">Ctrl+Y</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">剪切</div>
+                                <div class="right">Ctrl+X</div>
+                            </li>
+                            <li>
+                                <div class="left">复制</div>
+                                <div class="right">Ctrl+C</div>
+                            </li>
+                            <li>
+                                <div class="left">粘贴</div>
+                                <div class="right">Ctrl+V</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">在文件中查找</div>
+                                <div class="right">Ctrl+Shift+F</div>
+                            </li>
+                            <li>
+                                <div class="left">在文件中替换</div>
+                                <div class="right">Ctrl+Shift+H</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">切换行注释</div>
+                                <div class="right">Ctrl+Shift+/</div>
+                            </li>
+                            <li>
+                                <div class="left">切换块注释</div>
+                                <div class="right">Ctrl+Shift+/</div>
+                            </li>
+                            <li>
+                                <div class="left">Emmet:Expand Abbreviation</div>
+                                <div class="right">Tab</div>
+                            </li>
+                            <li>
+                                <div class="left">Emmet...</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                选择(S)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">全选</div>
+                                <div class="right">Ctrl+A</div>
+                            </li>
+                            <li>
+                                <div class="left">展开选定内容</div>
+                            </li>
+                            <li>
+                                <div class="left">缩小选定范围</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">向上复制一行</div>
+                            </li>
+                            <li>
+                                <div class="left">向下复制一行</div>
+                                <div class="right">Ctrl+Shift+D</div>
+                            </li>
+                            <li>
+                                <div class="left">向上移动一行</div>
+                                <div class="right">Ctrl+Shift+UpArrow</div>
+                            </li>
+                            <li>
+                                <div class="left">向下移动一行</div>
+                                <div class="right">Ctrl+Shift+DownArrow</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">切换为"Ctrl+单击"进行多光标功能</div>
+                            </li>
+                            <li>
+                                <div class="left">在上面添加光标</div>
+                                <div class="right">Shift+Alt+UpArrow</div>
+                            </li>
+                            <li>
+                                <div class="left">在下面添加光标</div>
+                                <div class="right">Shift+Alt+DownArrow</div>
+                            </li>
+                            <li>
+                                <div class="left">在行尾添加光标</div>
+                                <div class="right">Ctrl+Shift+L</div>
+                            </li>
+                            <li>
+                                <div class="left">添加下一个匹配项</div>
+                                <div class="right">Ctrl+D</div>
+                            </li>
+                            <li>
+                                <div class="left">添加上一个匹配项</div>
+                            </li>
+                            <li>
+                                <div class="left">选择所有匹配项</div>
+                                <div class="right">Alt+F3</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                查看(V)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">命令面板</div>
+                                <div class="right">Ctrl+Shift+P</div>
+                            </li>
+                            <li>
+                                <div class="left">打开视图...</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">外观</div>
+                                <div class="right">></div>
+                            </li>
+                            <li>
+                                <div class="left">编辑器布局</div>
+                                <div class="right">></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">资源管理器</div>
+                                <div class="right">Ctrl+Shift+E</div>
+                            </li>
+                            <li>
+                                <div class="left">搜索</div>
+                                <div class="right">Ctrl+Shift+F</div>
+                            </li>
+                            <li>
+                                <div class="left">SCM</div>
+                                <div class="right">Ctrl+Shift+G</div>
+                            </li>
+                            <li>
+                                <div class="left">调试</div>
+                                <div class="right">Ctrl+Shift+D</div>
+                            </li>
+                            <li>
+                                <div class="left">扩展</div>
+                                <div class="right">Ctrl+Shift+X</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">Output</div>
+                                <div class="right">Ctrl+Shift+U</div>
+                            </li>
+                            <li>
+                                <div class="left">调试控制台</div>
+                                <div class="right">Ctrl+Shift+Y</div>
+                            </li>
+                            <li>
+                                <div class="left">终端</div>
+                                <div class="right">Ctrl+`</div>
+                            </li>
+                            <li>
+                                <div class="left">问题</div>
+                                <div class="right">Ctrl+Shift+M</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">切换自动换行</div>
+                                <div class="right">Alt+Z</div>
+                            </li>
+                            <li>
+                                <div class="left">✔ 切换缩略图</div>
+                            </li>
+                            <li>
+                                <div class="left">切换呈现空格</div>
+                            </li>
+                            <li>
+                                <div class="left">切换控制字符</div>
+                            </li>
+                            <li>
+                                <div class="left">切换导航路径</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                转到(G)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">返回</div>
+                                <div class="right">Alt+-</div>
+                            </li>
+                            <li>
+                                <div class="left">前进</div>
+                                <div class="right">Shift+Alt+-</div>
+                            </li>
+                            <li>
+                                <div class="left">上次编辑位置</div>
+                                <div class="right">Ctrl+K Ctrl+Q</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">切换编辑器</div>
+                                <div class="right">></div>
+                            </li>
+                            <li>
+                                <div class="left">切换组</div>
+                                <div class="right">></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">转到文件...</div>
+                                <div class="right">Ctrl+E</div>
+                            </li>
+                            <li>
+                                <div class="left">转到工作区的符号...</div>
+                                <div class="right">Ctrl+Shift+R</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">转到文件中的符号...</div>
+                                <div class="right">Ctrl+;</div>
+                            </li>
+                            <li>
+                                <div class="left">转到定义...</div>
+                                <div class="right">F12</div>
+                            </li>
+                            <li>
+                                <div class="left">转到类型定义</div>
+                            </li>
+                            <li>
+                                <div class="left">转到实现</div>
+                                <div class="right">Ctrl+F12</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">转到行/列...</div>
+                                <div class="right">Ctrl+G</div>
+                            </li>
+                            <li>
+                                <div class="left">转到括号</div>
+                                <div class="right">Ctrl+M</div>
+                            </li>
+                            <li>
+                                <div class="left">切换呈现空格</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">下一个问题</div>
+                                <div class="right">F8</div>
+                            </li>
+                            <li>
+                                <div class="left">上一个问题</div>
+                                <div class="right">Shift+F8</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">Next Change</div>
+                                <div class="right">Alt+F3</div>
+                            </li>
+                            <li>
+                                <div class="left">Previous Change</div>
+                                <div class="right">Shift+Alt+F3</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                调试(D)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">启动调试</div>
+                                <div class="right">F5</div>
+                            </li>
+                            <li>
+                                <div class="left">在不调试的情况下启动</div>
+                                <div class="right">Ctrl+F5</div>
+                            </li>
+                            <li>
+                                <div class="left">停止调试</div>
+                                <div class="right">Shift+F5</div>
+                            </li>
+                            <li>
+                                <div class="left">启动调试</div>
+                                <div class="right">Ctrl+Shift+F5</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">打开配置</div>
+                            </li>
+                            <li>
+                                <div class="left">添加配置...</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">单步跳过</div>
+                                <div class="right">F10</div>
+                            </li>
+                            <li>
+                                <div class="left">单步执行</div>
+                                <div class="right">Ctrl+F11</div>
+                            </li>
+                            <li>
+                                <div class="left">单步停止</div>
+                            </li>
+                            <li>
+                                <div class="left">继续</div>
+                                <div class="right">F5</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">切换断点</div>
+                                <div class="right">F9</div>
+                            </li>
+                            <li>
+                                <div class="left">新建断点</div>
+                                <div class="right">></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">启动所有断点</div>
+                            </li>
+                            <li>
+                                <div class="left">禁用所有断点</div>
+                            </li>
+                            <li>
+                                <div class="left">删除所有断点</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">安装附加调试器</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                终端(T)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">新建终端</div>
+                                <div class="right">Ctrl+Shift+`</div>
+                            </li>
+                            <li>
+                                <div class="left">拆分终端</div>
+                                <div class="right">Ctrl+\</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">运行任务...</div>
+                            </li>
+                            <li>
+                                <div class="left">运行生成任务...</div>
+                                <div class="right">Ctrl+Shift+B</div>
+                            </li>
+                            <li>
+                                <div class="left">运行活动文本</div>
+                            </li>
+                            <li>
+                                <div class="left">运行所选文本</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">显示正在运行的任务...</div>
+                            </li>
+                            <li>
+                                <div class="left">重启正在运行的任务</div>
+                            </li>
+                            <li>
+                                <div class="left">终止任务</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">配置任务...</div>
+                            </li>
+                            <li>
+                                <div class="left">配置默认生成任务...</div>
+                                <div class="right"></div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <li>
+                帮助(H)
+                <ul class="list_content">
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">Welcome</div>
+                            </li>
+                            <li>
+                                <div class="left">Interactive Playground</div>
+                            </li>
+                            <li>
+                                <div class="left">文档</div>
+                            </li>
+                            <li>
+                                <div class="left">发行说明</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">键盘快捷方式参考</div>
+                                <div class="right">Ctrl+K Ctrl+R</div>
+                            </li>
+                            <li>
+                                <div class="left">介绍性视频</div>
+                            </li>
+                            <li>
+                                <div class="left">贴士和技巧</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">Twitter上和我们互动</div>
+                            </li>
+                            <li>
+                                <div class="left">搜索功能请求</div>
+                            </li>
+                            <li>
+                                <div class="left">使用英文报告问题</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">查看许可证</div>
+                            </li>
+                            <li>
+                                <div class="left">隐私声明</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">切换开发人员工具</div>
+                                <div class="right">Ctrl+Shift+I</div>
+                            </li>
+                            <li>
+                                <div class="left">打开进程管理器</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">重新启动以& &更新</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="exit">
+                        <ul class="wrap">
+                            <li>
+                                <div class="left">关于</div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="tool_btn">
+            <ul class="tool">
+                <li>
+                    <img class="min" src="images/min.png" alt="">
+                </li>
+                <li>
+                    <img src="images/return.png" alt="">
+                </li>
+                <li>
+                    <img src="images/shut.png" alt="">
+                </li>
+            </ul>
+        </div>
+    </nav>
+</body>
+</html>

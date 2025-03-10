@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>随机排布</title>
+    <style>
+        body,div,ul,img{
+            margin: 0px;
+            padding: 0px;
+        }
+        [v-cloak] {
+          display: none ;
+        }
+    </style>
+    <script>
+    window.onload = function () {
+        var arrCont = [
+            {
+                "url": "http://imgs.aixifan.com/live/1506227017498/1506227017498.png",
+                "title": ""
+            },
+            {
+                "url": "http://imgs.aixifan.com/live/1506227200718/1506227200718.png",
+                "title": ""
+            },
+            {
+                "url": "http://imgs.aixifan.com/live/1506227277054/1506227277054.png",
+                "title": ""
+            },
+            {
+                "url": "http://imgs.aixifan.com/live/1506227323846/1506227323846.png",
+                "title": ""
+            },
+            {
+                "url": "https://cdn-ak.f.st-hatena.com/images/fotolife/r/rinngo-11922911/20171013/20171013052326.jpg.PNG",
+                "title": ""
+            },
+            {
+                "url": "http://i0.hdslb.com/bfs/archive/f338f76f0731a9863db48c0ac445a8ad23c105a3.jpg.PNG",
+                "title": ""
+            },
+        ];
+        var str = "";
+        var oContainer = document.createElement('div');
+        oContainer.id = "container";
+        document.body.appendChild(oContainer);
+        oContainer.style.cssText = "width:100%; min-height:100px; margin:0 auto; text-align:center";
+        var oUl = document.createElement('ul');
+        oUl.id = "list";
+        oUl.style.cssText = "list-style:none; display:inline-block; position:absolute; left:1px;";
+        oContainer.appendChild(oUl);
+        for(var i = 0; i < 100000; i++) {
+            (function(e){
+                setTimeout(() => {
+                    str = "";
+                    var arr = arrCont.sort(function (a, b) {
+                        return Math.random() - 0.5
+                    });
+                    for (var i = 0; i < arrCont.length; i++) {
+                        str += '<li><img src="images/' + arr[i].url + '"></li>';
+                    }
+                    oUl.innerHTML = str;
+                    var aLi = document.getElementsByTagName("li");
+                    var aImg = document.getElementsByTagName("img");
+                    for (var i = 0; i < aLi.length; i++) {
+                        aLi[i].style.cssText = "width:335px; height:190px; float:left; margin-left:2px; position:relative;";
+                        aImg[i].style.cssText = "width:335px; height:auto; position:absolute; left:50%; top:50%; margin-top:-100px; margin-left:-170px;";
+                    }
+                }, 10000*e);
+            })(i);
+        }
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

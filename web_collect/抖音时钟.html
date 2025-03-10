@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>抖音时钟</title>
+  <style>
+      body,div{
+      margin: 0px;
+      padding: 0px;
+      }
+      body{
+        background: #000;
+      }
+      #container_month_12, #container_day_31, #container_week_7, #container_hour_12, #container_min_60, #container_sec_60{
+        position: relative;
+        top:180px;
+        transition:rotate(24deg);
+      }
+      #container_sec_60{
+        animation: my-animation_anti_clockwise infinite linear 60s;
+      }
+      #container_min_60{
+        animation: my-animation_anti_clockwise infinite linear 3600s;
+      }
+      #container_hour_12{
+        animation: my-animation_anti_clockwise infinite linear 43200s;
+      }
+      #container_week_7{
+        animation: my-animation_anti_clockwise infinite linear 604800s;
+      }
+      #container_day_31{
+        animation: my-animation_anti_clockwise infinite linear 2678400s;
+      }
+      #container_month_12{
+        animation: my-animation_anti_clockwise infinite linear 3153600s;
+      }
+
+      .div_month_12,.div_day_31,.div_week_7,.div_hour_12,.div_min_60,.div_sec_60{
+        height: 24px;
+        line-height: 24px;
+        text-align: bottom;
+        position: absolute;
+        left: 680px;
+        top: 300px;
+        /*border-bottom:1px solid red;*/
+      }
+      .div_month_12{
+        width: 100px;
+        text-indent: 50px;
+      }
+      .div_day_31{
+        width: 200px;
+        text-indent: 100px;
+      }
+      .div_week_7{
+        width: 240px;
+        text-indent: 165px;
+      }
+      .div_hour_12{
+        width: 270px;
+        text-indent: 200px;
+      }
+      .div_min_60{
+        width: 350px;
+        text-indent: 240px;
+      }
+      .div_sec_60{
+        width: 400px;
+        text-indent: 320px;
+      }
+      @keyframes my-animation_clockwise{
+        from{transform: rotate(0deg);}
+        to{transform: rotate(360deg);}
+      }
+      @keyframes my-animation_anti_clockwise{
+        from{transform: rotate(360deg);}
+        to{transform: rotate(0deg);}
+      }
+  </style>	
+	<script>
+  window.onload = function () {
+  
+      var arr_month_12 = ["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+      var arr_day_31 = ["一号","二号","三号","四号","五号","六号","七号","八号","九号","十号","十一号","十二号","十三号","十四号","十五号","十六号","十七号","十八号","十九号","二十号","二十一号","二十二号","二十三号","二十四号","二十五号","二十六号","二十七号","二十八号","二十九号","三十号","三十一号"];
+      var arr_week_7 = ["周一","周二","周三","周四","周五","周六","周日"];
+      var arr_hour_12 = ["一点","二点","三点","四点","五点","六点","七点","八点","九点","十点","十一点","十二点"];
+      var arr_min_60 = ["一分","二分","三分","四分","五分","六分","七分","八分","九分","十分","十一分","十二分","十三分","十四分","十五分","十六分","十七分","十八分","十九分","二十分","二十一分","二十二分","二十三分","二十四分","二十五分","二十六分","二十七分","二十八分","二十九分","三十分","三十一分","三十二分","三十三分","三十四分","三十五分","三十六分","三十七分","三十八分","三十九分","四十分","四十一分","四十二分","四十三分","四十四分","四十五分","四十六分","四十七分","四十八分","四十九分","五十分","五十一分","五十二分","五十三分","五十四分","五十五分","五十六分","五十七分","五十八分","五十九分",""];
+      var arr_sec_60 = ["一秒","二秒","三秒","四秒","五秒","六秒","七秒","八秒","九秒","十秒","十一秒","十二秒","十三秒","十四秒","十五秒","十六秒","十七秒","十八秒","十九秒","二十秒","二十一秒","二十二秒","二十三秒","二十四秒","二十五秒","二十六秒","二十七秒","二十八秒","二十九秒","三十秒","三十一秒","三十二秒","三十三秒","三十四秒","三十五秒","三十六秒","三十七秒","三十八秒","三十九秒","四十秒","四十一秒","四十二秒","四十三秒","四十四秒","四十五秒","四十六秒","四十七秒","四十八秒","四十九秒","五十秒","五十一秒","五十二秒","五十三秒","五十四秒","五十五秒","五十六秒","五十七秒","五十八秒","五十九秒",""];
+      
+      function template(n,m,className,id,arr,num){
+        var n = document.createElement('div');
+        n.id = id;
+        n.style.transformOrigin = '680px 300px';
+        document.body.appendChild(n);
+        for( var i = 0; i < arr.length; i++) {
+          var m = document.createElement('div');
+          m.className = className;
+          m.innerHTML = arr[i];
+          m.style.color = 'white';
+          m.style.transform = 'rotate('+ 360/num*i +'deg)';
+          m.style.transformOrigin = '0px 0px';
+          n.appendChild(m);
+        }
+      }
+      
+      template('oContainer_month_12', 'oDiv_month_12', 'div_month_12', 'container_month_12', arr_month_12, 12);
+      template('oContainer_day_31', 'oDiv_day_31', 'div_day_31', 'container_day_31', arr_day_31, 31);
+      template('oContainer_week_7', 'oDiv_week_7', 'div_week_7', 'container_week_7', arr_week_7, 7);
+      template('oContainer_hour_12', 'oDiv_hour_12', 'div_hour_12', 'container_hour_12', arr_hour_12, 12);
+      template('oContainer_min_60', 'oDiv_min_60', 'div_min_60', 'container_min_60', arr_min_60, 60);
+      template('oContainer_sec_60', 'oDiv_sec_60', 'div_sec_60', 'container_sec_60', arr_sec_60, 60);
+}
+  </script>
+</head>
+<body>
+</body>
+</html>

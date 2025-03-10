@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<meta charset="UTF-8">
+<title>音乐集</title>
+<style type="text/css">
+	body,h3,ul,li{
+		margin: 0;
+		padding: 0;
+	}
+	h3{
+		text-align: center;
+		margin-bottom: 10px;
+		color: #282828;
+		font-weight: bolder;
+	}
+	body{
+        min-width: 1366px;
+        width: auto;
+    }
+	#time{
+		color: #282828;
+		font-weight: bolder;
+	}
+	ul{
+		width: auto;
+		list-style: none;
+		margin: auto 20px;
+	}
+	li{
+		width: 139px;
+		height: 24px;
+		line-height: 24px;
+		font-size: 16px;
+		float: left;
+		margin:3px;
+		text-align: center;
+		border: 1px solid #82ae46;
+		border-radius: 5px;
+	}
+	li a{
+		text-decoration: none;
+		color: #282828;
+		display:block;
+	}
+	li a:hover{
+		color: #007aff;
+ 		font-weight: bold;
+	}
+	.color{
+		font-weight: bolder;
+	}
+/*电影*/
+	.red{
+		color: #CB2624;
+	}
+/*资源导航*/
+	.blue{
+		color: #1D77FF;
+	}
+/*本地*/
+	.sky{
+		color: #2051D2;
+	}
+/*学习*/
+	.green{
+		color: #3BA221;
+	}
+</style>
+<script type="text/javascript">
+	window.onload = function(){
+		var time = document.getElementById("time");
+		setInterval(fnTime,1000);
+		fnTime();
+		function fnTime(){
+			var myTime = new Date();
+			var iYear = myTime.getFullYear();
+			var iMon = myTime.getMonth() + 1;
+			var iDate = myTime.getDate();
+			var iWeek = myTime.getDay();
+			var iH = myTime.getHours();
+			var iMin = myTime.getMinutes();
+			var iSec = myTime.getSeconds();
+			var str = "";
+			if( iWeek === 0 ) iWeek = '星期日 Sunday';
+			if( iWeek === 1 ) iWeek = '星期一 Monday';
+			if( iWeek === 2 ) iWeek = '星期二 Tuesday';
+			if( iWeek === 3 ) iWeek = '星期三 Wednesday';
+			if( iWeek === 4 ) iWeek = '星期四 Thursday';
+			if( iWeek === 5 ) iWeek = '星期五 Friday';
+			if( iWeek === 6 ) iWeek = '星期六 Saturday';
+			str = iYear + '年' + fn1(iMon) + '月' + fn1(iDate) + '日 ' + iWeek + ' ' + fn1(iH) + ':' + fn1(iMin) + ':' + fn1(iSec);
+			time.innerHTML = str;
+		}
+		function fn1(n){
+			return n < 10 ? '0' + n:n;
+		}
+
+	}
+</script>
+<body>
+	<div id="time"></div>
+	<h3 class="color green">音乐集</h3>
+	<ul>
+		<li><a class="color sky" href="/website/music/index-music.html" title="kugou·music" target="_blank">kugou·music</a></li>
+		<li><a class="color sky" href="/website/music/index-kugou.html" title="kugou·music" target="_blank">kugou·music</a></li>
+		<li><a class="color sky" href="/website/music/index-netease.html" title="netease·music" target="_blank">netease·music</a></li>
+		<li><a class="color red" href="/website/music/index-tencent" title="tencent·music" target="_blank">tencent·music</a></li>
+	</ul>
+</body>
+</html>

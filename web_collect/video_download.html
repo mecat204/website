@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>video_download</title>
+	<script>
+		window.onload = function() {
+			var oInput = document.createElement('input');
+			document.body.appendChild(oInput);
+			oInput.placeholder = "请输入前缀";
+			var oInput1 = document.createElement('input');
+			document.body.appendChild(oInput1);
+			oInput1.placeholder = "请输入后缀";
+			var oInput2 = document.createElement('input');
+			document.body.appendChild(oInput2);
+			oInput2.type="button";
+			oInput2.value = "开始运行";
+			var len = 584;
+			var str = "";
+			oInput2.onclick = Run;
+			function Run() {
+				for (var i = 0; i < len; i++) {
+					str += oInput.value + fn(i) + oInput1.value + '<br/>';
+				}
+				function fn(n) {
+					return n < 10 ? '00' + n : '0' + n;
+				}
+				var oDiv = document.createElement('div');
+				document.body.appendChild(oDiv);
+				oDiv.innerHTML = str;
+			}	
+		}
+	</script>
+</head>
+<body>
+</body>
+</html>

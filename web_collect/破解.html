@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>破解</title>
+<style>
+#mingwen,#pwd{ width:400px;
+height: auto;
+min-height: 400px;
+border: 0.2px solid #f2f2b0;
+float: left;
+margin-left: 10px;
+background: #f2f2b0;
+font-size: 18px;
+font-weight: bold;
+}
+</style>
+<script type="text/javascript">
+window.onload = function() {
+	var aInp = document.getElementsByTagName('input');
+	var oMingwen = document.getElementById('mingwen');
+	var oPwd = document.getElementById('pwd');
+	//译文：
+	aInp[0].onclick = function() { 
+		oPwd.value = '';
+		//alert(typeof(oMingwen.value));
+		for(var i = 0; i < oMingwen.value.length; i++){
+			oPwd.value += oMingwen.value.charCodeAt(i)+' ';
+			oMingwen.style.color = 'black';
+			oPwd.style.color = '#e83929';
+		}
+	}
+	//破解：
+	aInp[1].onclick = function() {
+		oMingwen.value = '';
+		//alert( oPwd.value.split(' ')[2] );
+		for(var i = 0; i < oPwd.value.length; i++){
+			//alert()
+			if( oPwd.value.split(' ')[i] == 0 ){
+				return oMingwen.value;
+			} 
+			oMingwen.value += String.fromCharCode(oPwd.value.split(' ')[i]);
+			oMingwen.style.color = '#e83929';
+			oPwd.style.color = 'black';
+		}
+	}
+}
+</script>
+</head>
+<body>
+<input type="button" name="" value="译文">
+<input type="button" name="" value="破解"><br>
+<textarea id="mingwen"></textarea>
+<textarea id="pwd"></textarea>
+</body>
+</html>

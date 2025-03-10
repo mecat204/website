@@ -1,0 +1,448 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1 (transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ 
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>魔方</title>
+    <style>
+        /*定义图片大小*/
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        .main {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1
+        }
+
+        .bgimg {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+        }
+
+        .stage {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+        }
+
+        .cube div {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            /*border: 1px solid #00F;*/
+            /*background-color: rgba(255,200,100,0.5);*/
+            display: block;
+            border-radius: 5%;
+        }
+        /*通过转换X、Y、Z轴上的角度，实现魔方六个面的位置摆放*/
+        .cube .one {
+            -webkit-transform: translateZ(150px);
+            -moz-transform: translateZ(150px);
+            -ms-transform: translateZ(150px);
+            transform: translateZ(150px);
+        }
+
+        .cube .two {
+            -webkit-transform: rotateX(-90deg) translateZ(150px);
+            -moz-transform: rotateX(-90deg) translateZ(150px);
+            -ms-transform: rotateX(-90deg) translateZ(150px);
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+
+        .cube .three {
+            -webkit-transform: rotateX(90deg) translateZ(150px);
+            -moz-transform: rotateX(90deg) translateZ(150px);
+            -ms-transform: rotateX(90deg) translateZ(150px);
+            transform: rotateX(90deg) translateZ(150px);
+        }
+
+        .cube .four {
+            -webkit-transform: rotateZ(180deg) rotateY(180deg) translateZ(150px);
+            -moz-transform: rotateZ(180deg) rotateY(180deg) translateZ(150px);
+            -ms-transform: rotateZ(180deg) rotateY(180deg) translateZ(150px);
+            transform: rotateZ(180deg) rotateY(180deg) translateZ(150px);
+        }
+
+        .cube .five {
+            -webkit-transform: rotateY(-90deg) translateZ(150px);
+            -moz-transform: rotateY(-90deg) translateZ(150px);
+            -ms-transform: rotateY(-90deg) translateZ(150px);
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+
+        .cube .six {
+            -webkit-transform: rotateY(90deg) translateZ(150px);
+            -moz-transform: rotateY(90deg) translateZ(150px);
+            -ms-transform: rotateY(90deg) translateZ(150px);
+            transform: rotateY(90deg) translateZ(150px);
+        }
+
+        .one div,
+        .two div,
+        .three div,
+        .four div,
+        .five div,
+        .six div {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            /*border: 1px solid #000;*/
+            border-radius: 10%;
+            /*display: inline-block;*/
+        }
+        /*每张图片位置的确定*/
+        .cube div div:nth-child(1) {}
+
+        .cube div div:nth-child(2) {
+            background-image: url(as.jpg);
+            left: 100px;
+        }
+
+        .cube div div:nth-child(3) {
+            /*background-color: #FF0000;*/
+            left: 200px;
+        }
+
+        .cube div div:nth-child(4) {
+            /*background-color: #FF6431;*/
+            top: 100px;
+        }
+
+        .cube div div:nth-child(5) {
+            /*background-color: #15FF31;*/
+            top: 100px;
+            left: 100px;
+        }
+
+        .cube div div:nth-child(6) {
+            /*background-color: #1564FF;*/
+            top: 100px;
+            left: 200px;
+        }
+
+        .cube div div:nth-child(7) {
+            /*background-color: #15F4F5;*/
+            top: 200px;
+        }
+
+        .cube div div:nth-child(8) {
+            /*background-color: #F56F89;*/
+            top: 200px;
+            left: 100px;
+        }
+
+        .cube div div:nth-child(9) {
+            /*background-color: #1F644F;*/
+            top: 200px;
+            left: 200px;
+        }
+        /*最后最关键的旋转动画效果来了，
+        感觉看着有些费劲建议看下CSS3的
+        transform，animation属性
+        */
+        .Ani-rotate {
+            -webkit-transform-style: preserve-3d;  /*开启3D视图，这样才能看到3D的效果*/
+            -webkit-animation: rotate 30s infinite;  /*设置动画，动画的名称，动画执行时间，动画执行次数*/
+            /*margin: 80px;*/
+            /*-webkit-perspective:2000px;*/
+            /*-webkit-perspective-origin: -133% 75%;;*/
+            -webkit-transform-origin: 150px 150px 0px; /*旋转中心点，分别为 X、Y、Z轴上的位置*/
+            -moz-transform-style: preserve-3d;      /*下面是为了兼容更多浏览器*/
+            -moz-animation: rotate 30s infinite;
+            -moz-transform-origin: 150px 150px 0px;
+            -ms-transform-style: preserve-3d;
+            -ms-animation: rotate 30s infinite;
+            -ms-transform-origin: 150px 150px 0px;
+            animation: rotate 30s infinite;
+            transform-style: preserve-3d;
+            transform-origin: 150px 150px 0px;
+        }
+        /*下面是动画的定义，设置不同时间动画的不同状态
+        rotateX、rotateY、rotateZ 为设置在X、Y、Z轴上旋转的角度
+        "-"为逆时针旋转
+        */
+        @-webkit-keyframes rotate {
+            from,
+            to {}
+            15% {
+                -webkit-transform: rotateY(-135deg);
+            }
+            30% {
+                -webkit-transform: rotateY(-90deg)rotateZ(135deg); 
+            }
+            45% {
+                -webkit-transform: rotateY(225deg)rotateZ(135deg);
+            }
+            60% {
+                -webkit-transform: rotateY(135deg)rotateX(135deg);
+            }
+            75% {
+                -webkit-transform: rotateX(135deg)rotateY(225deg);
+            }
+            90% {
+                -webkit-transform: rotateX(-135deg);
+            }
+        }
+
+        @-moz-keyframes rotate {
+            from,
+            to {}
+            15% {
+                -moz-transform: rotateY(-135deg);
+            }
+            30% {
+                -moz-transform: rotateY(-90deg)rotateZ(135deg);
+            }
+            45% {
+                -moz-transform: rotateY(225deg)rotateZ(135deg);
+            }
+            60% {
+                -moz-transform: rotateY(135deg)rotateX(135deg);
+            }
+            75% {
+                -moz-transform: rotateX(135deg)rotateY(225deg);
+            }
+            90% {
+                -moz-transform: rotateX(-135deg);
+            }
+        }
+
+        @-ms-keyframes rotate {
+            from,
+            to {}
+            15% {
+                -ms-transform: rotateY(-135deg);
+            }
+            30% {
+                -ms-transform: rotateY(-90deg)rotateZ(135deg);
+            }
+            45% {
+                -ms-transform: rotateY(225deg)rotateZ(135deg);
+            }
+            60% {
+                -ms-transform: rotateY(135deg)rotateX(135deg);
+            }
+            75% {
+                -ms-transform: rotateX(135deg)rotateY(225deg);
+            }
+            90% {
+                -ms-transform: rotateX(-135deg);
+            }
+        }
+
+        @keyframes rotate {
+            from,
+            to {}
+            15% {
+                transform: rotateY(-135deg);
+            }
+            30% {
+                transform: rotateY(-90deg)rotateZ(135deg);
+            }
+            45% {
+                transform: rotateY(225deg)rotateZ(135deg);
+            }
+            60% {
+                transform: rotateY(135deg)rotateX(135deg);
+            }
+            75% {
+                transform: rotateX(135deg)rotateY(225deg);
+            }
+            90% {
+                transform: rotateX(-135deg);
+            }
+        }
+    </style>
+</head>
+ 
+<body>
+    <div class="main">
+        <img src="img/bg.jpg" class="bgimg">
+        <div class="stage">
+            <div class="cube Ani-rotate">
+                <div class="one">
+                    <div>
+                        <img src="img/1 (1).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (2).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (3).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (4).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (5).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (6).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (7).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (8).jpg">
+                    </div>
+                    <div>
+                        <img src="img/1 (9).jpg">
+                    </div>
+                </div>
+                <div class="two">
+                    <div>
+                        <img src="img/2 (1).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (2).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (3).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (4).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (5).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (6).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (7).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (8).jpg">
+                    </div>
+                    <div>
+                        <img src="img/2 (9).jpg">
+                    </div>
+                </div>
+                <div class="three">
+                    <div>
+                        <img src="img/3 (1).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (2).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (3).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (4).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (5).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (6).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (7).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (8).jpg">
+                    </div>
+                    <div>
+                        <img src="img/3 (9).jpg">
+                    </div>
+                </div>
+                <div class="four">
+                    <div>
+                        <img src="img/4 (1).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (2).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (3).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (4).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (5).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (6).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (7).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (8).jpg">
+                    </div>
+                    <div>
+                        <img src="img/4 (9).jpg">
+                    </div>
+                </div>
+                <div class="five">
+                    <div>
+                        <img src="img/5 (1).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (2).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (3).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (4).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (5).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (6).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (7).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (8).jpg">
+                    </div>
+                    <div>
+                        <img src="img/5 (9).jpg">
+                    </div>
+                </div>
+                <div class="six">
+                    <div>
+                        <img src="img/6 (1).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (2).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (3).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (4).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (5).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (6).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (7).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (8).jpg">
+                    </div>
+                    <div>
+                        <img src="img/6 (9).jpg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+ 
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>增删改查</title>
+    <style>
+        th,td{
+            text-align: center;
+        }
+    </style>
+    <script>
+        function getChecked(form, name) {
+            var arr = [];
+            for(var i = 0; i < form[name].length; i++){
+                if(form[name][i].checked){
+                    arr.push(form[name][i].value);
+                }
+            }
+            if(form[name][0].type == 'radio'){
+                return arr[0];
+            }
+            if (form[name][0].type == 'checkbox') {
+                return arr;
+            }
+            
+
+        }
+    </script>
+    <script>
+        window.onload = function () {
+            var data = [
+                {"name":"张五", "sex":"男", "age":"18"},
+                {"name":"张五", "sex":"男", "age":"18"},
+                {"name":"张五", "sex":"男", "age":"18"},
+                {"name":"张五", "sex":"男", "age":"18"},
+                {"name":"张五", "sex":"男", "age":"18"},
+                {"name":"张五", "sex":"男", "age":"18"},
+                {"name":"张五", "sex":"男", "age":"18"},
+                {"name":"张五", "sex":"男", "age":"18"},
+            ];
+            var oForm = document.getElementById("form1"),
+                oTable = document.getElementById("tab1"),
+                oThead = oTable.tHead,
+                oTbody = oTable.tBodies[0],
+                oCheckAll = document.getElementById("checkAll"),
+                oDelete = document.getElementById("delete");
+
+            for(var i = 0; i < data.length; i++) {
+                var oTr = document.createElement('tr');
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = '<input type="checkbox">';
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = data[i].name;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = data[i].sex;
+                oTr.appendChild(oTd);
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = data[i].age;
+                oTr.appendChild(oTd);
+
+                oTbody.appendChild(oTr);
+                colorLine();
+            }
+            checkbox();
+            
+
+            oForm.add.onclick = function(){
+                var arr = [];
+                arr[0] = oForm.name.value;
+                arr[1] = getChecked(oForm, 'sex');
+                arr[2]  = oForm.age.value;
+
+                for(var i = 0; i < arr.length; i++) {
+                    if(!arr[i]){
+                        alert('您有项目没有填写！');
+                        return;
+                    }
+                }
+
+                var oTr = document.createElement('tr');
+
+                var oTd = document.createElement('td');
+                oTd.innerHTML = '<input type="checkbox">';
+                oTr.appendChild(oTd);
+
+                for(var i = 0; i < arr.length; i++) {
+                    var oTd = document.createElement('td');
+                    oTd.innerHTML = arr[i];
+                    oTr.appendChild(oTd);
+                }
+                oTbody.appendChild(oTr);
+                oForm.reset();
+                colorLine();
+                checkbox();
+            }
+            function colorLine() {
+                for (var i = 0; i < oTbody.rows.length; i++) {
+                    if (1 % 2) {
+                        oTbody.rows[i].style.background = "#f1f1f1";
+                    } else {
+                        oTbody.rows[i].style.background = '#fff';
+                    }
+                }
+            }
+
+            function checkbox(){
+                for(var i = 0; i < oTbody.rows.length; i++) {
+                    //每一行的点击
+                    oTbody.rows[i].onclick = function(){
+                        this.cells[0].children[0].checked = this.cells[0].children[0].checked == false ? true : false;
+                        check();
+                    }
+                    //每一行第一个单元格第一个子元素点击事件
+                    oTbody.rows[i].cells[0].children[0].onclick = function(){
+                        this.checked = this.checked == false ? true : false;
+                        check();
+                    }
+                }
+
+                oTable.tHead.onclick = function(){
+                    oCheckAll.checked = oCheckAll.checked == false ? true : false;
+                    checkAll();
+                }
+                oCheckAll.onclick = function () {
+                    this.checked = this.checked == false ? true : false;
+                    checkAll();
+                }
+
+                function checkAll(){
+                    for(var i = 0; i < oTbody.rows.length; i++){
+                        oTbody.rows[i].cells[0].children[0].checked = oCheckAll.checked;
+                    }
+                }
+
+                function check(){
+                    for(var i = 0; i < oTbody.rows.length; i++) {
+                        if(!oTbody.row[i].cells[0].children[0].checked){
+                            oCheckAll.checked = false;
+                            return;
+                        }
+                    }
+                    oCheckAll.checked = true;
+                }
+
+            }
+
+            oDelete.onclick = function(){
+                oCheckAll.checked = false;
+                for(var i = 0; i < oTbody.rows.length; i++){
+                    if(oTbody.rows[i].cells[0].children[0].checked){
+                        oTbody.removeChild(oTbody.rows[i]);
+                        i--;
+                    }
+                }
+                colorLine();
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <form action="" id="form1">
+        请输入姓名：<input type="text" name="name"><br>
+        请输入性别：<input type="radio" name="sex" value="男"> 男 <input type="radio" name="sex" value="女">女<br>
+        请输入年龄： <input type="text" name="age"><br>
+        <input type="button" value="添加到表格" name="add">
+    </form>
+    <table id="tab1">
+        <thead>
+            <tr>
+                <th width="20%"><input type="checkbox" id="checkAll">全选</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <div id="div1">
+        <input type="button" value="删除所选行" id="delete">
+    </div>
+</body>
+</html>

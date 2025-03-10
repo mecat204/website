@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>douyin</title>
+<style type="text/css">
+body{
+        background-color: #30388D;
+}
+h3{
+        text-align: center;
+}
+li{
+        line-height:36px;
+        width:580px;
+        height:36px;
+        float:left;
+        margin:5px 35px 5px 5px;
+        border:1px solid #99C794;
+        border-radius:5px;
+        text-align:center;
+
+}
+li a, #time a{
+        text-decoration:none;
+        color: #6699FF;
+}
+
+
+</style>
+<script type="text/javascript" src="js/data.js"></script>
+<script type="text/javascript">
+        window.onload = function(){
+                var oH3 = document.createElement('h3');
+                var oBody = document.body;
+                var str = '';
+                for (var i = 0; i < arr.length; i++) {
+                        str += '<li><a href="'+ arr[i].href +'" title="'+ arr[i].cont +'" target="_blank">'+ arr[i].cont +'</a></li>';
+                }
+                var oOl =  document.createElement('ol');
+                setInterval(function(){
+                oH3.innerHTML ='douyin';
+                },1000);
+                oH3.style.cssText= `
+                        color: #99C794;
+                        position: absolute;
+                        top: 20px;
+                        left: 50%;
+                `
+
+                var oDiv1 = document.createElement('div');
+                oDiv1.id = "time"
+                oBody.appendChild(oDiv1);
+                oDiv1.style.cssText = `
+                        width: 320px;
+                        height: 60px;
+                        text-align: center;
+                        font-weight: bolder;
+                        color: #99C794;
+                `;
+
+                fnTime();
+                function fnTime(){
+                        var myTime=new Date();
+                        var iYear=myTime.getFullYear();
+                        var iMon=myTime.getMonth()+1;
+                        var iDate=myTime.getDate();
+                        var iWeek=myTime.getDay();
+                        var iH=myTime.getHours();
+                        var iMin=myTime.getMinutes();
+                        var iSec=myTime.getSeconds();
+                        var str2='';
+                        if(iWeek===0) iWeek='星期日';
+                        if(iWeek===1) iWeek='星期一';
+                        if(iWeek===2) iWeek='星期二';
+                        if(iWeek===3) iWeek='星期三';
+                        if(iWeek===4) iWeek='星期四';
+                        if(iWeek===5) iWeek='星期五';
+                        if(iWeek===6) iWeek='星期六';
+                        str2=iYear+'年'+fn1(iMon)+'月'+fn1(iDate)+'日 '+iWeek+' '+fn1(iH)+':'+fn1(iMin)+':'+fn1(iSec);
+                        oDiv1.innerHTML=str2+'</br></br>'+'&nbsp;'+'<a href="https://zpandame.github.io/website/hidden.html" style="color: #6699FF" title="website" target="_blank">website</a>'+' <a href="http://g.nite07.org/"  style="color: #6699FF" title="github镜像网站" target="_blank">github镜像网站</a>'+' <a href="https://www.baidu.com/"  style="color: #6699FF" title="百度" target="_blank">百度</a>'+' <a href="http://fanyi.baidu.com/"  style="color: #6699FF" title="translate" target="_blank">百度翻译</a>';
+                }
+                function fn1(n){
+                        return n<10?'0'+n:n;
+                }
+
+                oBody.appendChild(oH3);
+                oOl.innerHTML = str;
+                oBody.appendChild(oOl);
+        }
+</script>
+</head>
+<body>
+</body>
+</html>

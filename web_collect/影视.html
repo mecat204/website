@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>影视</title>
+	<style>
+		body,ul,h3{
+			margin: 0px;
+			padding: 0px;
+		}
+		template{
+			position: absolute;
+			left: 5px;
+			top: 5px;
+		}
+		ul{
+			display: none;
+			list-style: none;
+		}
+		li{
+			text-indent: 2em;
+			margin-bottom: 5px;
+		}
+		a{
+			text-decoration: none;
+			color: #56D8EF;
+			font-weight: bolder;
+		}
+		a:hover{
+			color: #A6E22B;
+		}
+	</style>
+	<script>
+	var data = [
+		{
+			"title" : "平凡的世界",
+			"url" : [
+				"https://cdn-2.haku88.com/hls/2018/12/19/VYfepJVy/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/t1MeMLzR/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/1PzKa5Dt/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/bZx1b2RG/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/694lnmZC/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/QtpYZLPH/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/oBhFjDuT/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/pOBvjVxK/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/6xI9g4Oj/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/1oExAijL/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/ALgUbDhK/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/fWqSEtEn/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/99t9GMEa/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/6hUtEojf/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/7Xe5QTTC/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/pmIWSDfB/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/XE7u4sqz/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/ncGEvMaJ/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/Itr1OzFU/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/DPj8sfrP/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/9KKGunMl/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/EXuaI0iH/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/twnsGUxx/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/FQyH4ECK/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/321q5mPJ/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/sFLANMzt/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/shkNb6Ne/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/tOSMp0wc/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/3CFkwZuO/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/nTQBxAy8/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/bKSlrYWH/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/7sN6F30n/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/cgXu9sDP/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/vK7p9cN8/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/HQMjJrx9/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/O6r3CZJW/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/LM8mUsDR/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/5i8d4zf9/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/DFlhi73W/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/5h4Kb18V/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/7cPH5VvF/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/IREwQmKs/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/jGOaxeTU/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/Oa4F6kWS/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/28zBL6f9/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/doUaePbi/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/gru3G9gx/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/rRNjlov5/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/NoeFVIKD/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/TXehGOSK/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/cWNM6oSY/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/hTqJUb92/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/MNtm1ur0/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/yk2rq5Ks/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/22mkMVRD/playlist.m3u8",
+				"https://cdn-2.haku88.com/hls/2018/12/19/s1gC0YRG/playlist.m3u8",
+			]
+		}
+	];
+	</script>
+	<script>
+		window.onload = function () {
+			var container = document.createElement('div');
+			container.id = container;
+			document.body.appendChild(container);
+			
+			for (var i = 0; i < data.length; i++) {
+				var template = document.createElement('div');
+				template.className = 'template';
+				var h3 = document.createElement('h3');
+				h3.innerHTML = data[i].title;
+				var ul =document.createElement('ul');
+				ul.className = 'list';
+				for(var j = 0; j < data[i].url.length; j++) {
+					var li = document.createElement('li');
+					li.innerHTML = '<a href="https://play.jiningwanjun.com/ckm3u8.html?v=' + data[i].url[j] + '" title="平凡的世界" target="_blank">第' + fn(j+1)+ '集</a>';
+					ul.appendChild(li);
+				}
+				function fn(n) {
+					return n < 10 ? '00' + n : (n < 100 ? '0' + n : n);
+				}
+				template.appendChild(h3);
+				template.appendChild(ul);
+
+				container.appendChild(template);
+
+				h3.style.cssText = `
+					margin: 0px;
+					padding: 0px;
+				`;
+				var flag = 1;
+				h3.addEventListener('click',function(){
+					if(flag){
+						ul.style.cssText = `
+							display: block;
+						`;
+						flag = 0;
+					}else{
+						ul.style.cssText = `
+						display: none;
+						`;
+						flag = 1;
+					}
+				});
+			}
+		}
+	</script>
+</head>
+<body>
+</body>
+</html>

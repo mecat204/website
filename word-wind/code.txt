@@ -1,0 +1,266 @@
+decay 退化
+debug 调试
+default 缺省，默认值
+dead lock 死锁(for database)
+datagram 数据报文
+debugger 调试器
+deduction 推导
+deallocate 归还
+default database 默认数据库(for database)
+default instance 默认实例(for database)
+default result set 默认结果集(for database)
+defer 推迟
+definition 定义
+delegate 委托
+delegation 委托
+deploy 部署
+dereference 解引用
+derived class 派生类
+design by contract 锲约式设计
+design pattern 设计模式
+destroy 销毁
+device 设备
+DHTML(dynamic Hyper Text Markup Language)动态超文本标记语言
+dialog 对话框
+digest 摘要
+digital 数字的
+DIME(Direct Internet Message Encapsulation)直接Internet消息封装
+directive(编译)指示符
+directory 目录
+dirty page 脏页(for database)
+disassembler 反汇编器
+DISCO(Discovery of Web Services)Web Services的查找
+disk 盘
+dispath 调度、分派、派发
+DISPID(Dispatch Identifier)分派标识符
+distributed computing 分布式计算
+DNA(Distributed inerNet Application) 分布式网间应用程序
+document 文档
+DOM(Document Object Model)文档对象模型
+dot operator(圆)点操作符
+drive 驱动(程序)
+DTD (document type definition) 文档类型定义
+double-byte character set(DBCS)双字节字符集
+dump 转储
+dump file 转储文件
+dynamic cursor 动态游标(for database)
+dynamic filter 动态筛选(for database)
+dynamic locking 动态锁定(for database)
+dynamic recovery 动态恢复(for database)
+dynamic snapshot 动态快照(for database)
+dynamic SQL statements 动态SQL语句(for database)
+dynamic assembly 动态装配件、动态配件
+dynamic binding 动态绑定
+efficiency 效率
+efficient 高效
+end user 终端用户
+entity 物体、实体
+encapsulation 封装
+enclosing class 外围类别(与巢状类别 nested class 有关)外围类别
+enum (enumeration)列举(一种C++资料型别) 枚举
+enumerators 列举元 (enum型别中的成员) 枚举成员、枚举器
+equal 相等
+equality 相等性
+equality operator equality (等号) 运算子 == 等号操作符
+equivalence 等价性、等同性、对等性 等价性
+equivalent 等价、同等、对等 等价
+escape code 转译码 
+evaluate 评估、求值、核定评估
+event 事件
+event driven 事件驱动的
+exception 异常情况 异常情况
+exception declaration 异常宣告 异常声明
+exception handling 异常处理、异常处理机制
+exception specification 异常规格
+exit 退出
+explicit 明白的、明显的、显式 
+export 汇出 引出、导出
+expression 运算式、算式表达式
+fat client 胖客户端
+feature 特征、特性
+fetch 提取
+field 字段(for database)
+field 字段(java)
+field length 字段长度(for database)
+file 文件
+filter 筛选(for database)
+finalization 终结
+finalizer 终结器
+firewall 防火墙
+flag 标记
+flash memory 闪存
+flush 刷新
+ipconfig/flush
+font 字体
+foreign key (FK)外键 (for database)
+form 窗体
+formal parameter 形参
+forward declaration 前置声明
+forward-only 只向前的
+forward-only cursor 只向前游标(for database)
+framework 框架
+full specialization 完全特化
+function 函数
+function call operator (即operator()) 函数调用操作符
+function object 函数对象
+function template 函数模板
+functionality 功能
+functor 仿函数
+GAC(global assembly cache) 全局装配件缓存、全局配件缓存
+GC(Garbage collection) 垃圾回收(机制)、垃圾收集(机制)
+game 游戏
+generate 生成
+generic 泛化的、一般化的、通用的
+generic algorithm 通用算法
+genericity 泛型
+getter (相对于setter)取值函数
+global 全局的
+global object 全局对象
+golbal scope resolution operator 全局范围解析操作符
+grant 授权(for database)
+granularity 粒度
+group 组、群
+group box 分组框
+GUI 图形界面
+GUID(Globally Unique Identifier) 全球唯一标识符
+hand shaking 握手
+handle 句柄
+handler 处理器
+hard-coded 硬编码的
+hard-copy 截屏图
+hard disk 硬盘
+hardware 硬件
+hash table 散列表、哈希表
+header file 头文件
+heap 堆
+help file 帮助文件
+hierarchy 层次结构、继承体系
+hierarchical data 阶层式数据、层次式数据
+hook 钩子
+Host(application) 宿主(应用程序)
+hot key 热键
+hyperlink 超链接
+HTML (HyperText Markup Language) 超文本标记语言
+HTTP pipeline HTTP管道
+HTTP(HyperText Transfer Protocol)超文本传输协议
+icon 图表
+IDE(Integrated Development Environment)集成开发环境
+identifier 标识符
+IDL(Interface Definition Language) 接口定义语言
+idle time 空闲时间
+if and only if 当且仅当
+IL(Intermediate Language)中间语言、中介语言
+image 图像
+IME 输入法
+immediate base 直接基类
+immediate derived 直接派生类
+immediate updating 即时更新(for database) 
+implement 实现
+implementation 实现、实现品
+implicit 隐式
+implicit transation 隐式事务(for database)
+import 导入
+incremental updata 增量更新(for database)
+independent Set 独立集
+index 索引(for database)
+infinite loop 无限循环
+infinite recursive 无限递归
+information 信息
+inheritance 继承、继承机制
+initialization 初始化
+initialization list 初始化列表、初始值列表
+initializa 初始化
+inline 内联
+inline expansion 内联展开
+inner join 内联接(for database)
+instance 实例
+instantiated 具现化、实体化(常应用于template)
+integrate 集成、整合
+integrity 完整性、一致性
+integrity constraint 完整性约束(for database)
+interacts 交互
+interface 接口
+interoperability 互操作性、互操作能力
+interpreter 解释器
+introspection 自省
+invariants 不变性
+invoke 调用
+isolation level 隔离级别(for database)
+item 项、条款、项目
+iterate 迭代
+iteration 迭代(回圈每次轮回称为一个iteration)
+iterative 反复的、迭代的
+iterator 迭代器
+laser 雷射 激光
+level 阶层(级) high level 高级 高层
+library 程式库、函式库、函数库
+lifetime 生命期、寿命 
+link 联结 链接
+linker 连接器、联结器
+literal constant 字面常数(例 3.14 或 "hi"这等常数值) 字面常数
+list 串列 (linked - list) 列表、标、链接
+list box 列表方块、列表框
+load 载入 装载
+loader 载入器 装载器
+local 区域的(对应于 global) 局部的
+local object 区域物件、局部对象
+lock 机锁
+loop 回圈 循环的
+lvalue 左值
+macro 巨集 宏
+magic number 魔术数字 魔法数
+maintain 维护
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

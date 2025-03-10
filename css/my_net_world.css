@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+body,#system_time,countdown,#container,h3,.content,.list,ul,li,a{margin:0; padding:0;}
+body{height:1000px; background:#f2f2b0;font-family:宋体;/*url(../images/11.jpg) repeat-x fixed center;*/}
+/*复合样式
+background:url(images/1.jpg);background-attachment:fixed;background-position:center;
+*/
+#system_time{ display:inline-block; position:fixed; left:5px; top:5px;font-weight:bold;  color:red; z-index:100;}
+
+#countdown{display:inline-block; position:fixed; left:1095px; top:5px;width:250px; font-weight:bold; color:red;z-index:100;}
+
+.t1{ overflow:hidden; width:220px;background:rgba(255, 255, 255, 0);border:none; height:25px;color:red; font-weight:bold;text-align:center;margin-left:15px;}
+
+a{text-decoration: none;}
+/*统一添加border,查看定位，最后再取消。*/
+/*#containre,h3,#system_time,#countdown,.content{ border:1px solid red;}*/
+
+#container{ margin:80px auto; width:1000px; height:auto; position:relative;}
+h3{ margin:0px 0px 10px 0px; text-align:center; color:#82ae46;}
+
+.content{width:996px; height:auto; border:2px solid #82ae46; border-radius: 5px; margin-bottom:20px; position:relative;}
+.list{list-style:none; width:100%; overflow:hidden; margin:5px 0px 5px 51px; }/*上右下左*/ /*高度自适应*/
+.list li,span{width:120px; height: 30px; line-height: 30px; border:1px solid #82ae46; float:left; text-align: center; margin:5px 0px 5px 5px;border-radius: 5px;display:inline-block;}/*display: block;强制将div转化为块*/ /*margin:0px 0px 5px 5px上右下左*/
+.content span{ background:#82ae46; }
+.content span:hover{ background:blue; font-weight:bold;}
+.list li a{color:#090; font-size:14px; display:block; text-decoration:none;}
+.list li:hover{background:#82ae46;}
+.list li a:hover{background:#82ae46;color:#0022FF;font-size: 14px; font-weight:bold;}
+
+/*.nav{color:red;}*/
+
+#aside{ width:150px; height:500px; position:fixed; left:15px; top:140px;}
+.month{ list-style:none;}
+.month li a{ color:blue; font-weight:blod;}
+.month li{margin-bottom:5px; color:#82ae46; font-size:14px;}/*淡萌黄#93ca76 甚三红 #ee827c 杜若色 #3e62ad 鶸萌黄 #82ae46黄绿 #b8d200*/
+.month li:hover{color:#ee827c; font-size:16px; font-weight:bold;}
+/*#content{margin:0 auto; height:1000px; width:100%;}*/
+.footer{width:996px;text-align:center; height:60px;line-height:60px;overflow:hidden; position:absolute; bottom:-100px;}/*overflow:hidden清除浮动*/
+.footer:hover{color:blue; font-weight:bold;}
+

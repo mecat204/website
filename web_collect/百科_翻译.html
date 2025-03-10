@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>英文翻译</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	body{
+		background: #0C1021;
+		color: #FF6400;
+	}
+	li{
+		list-style: none;
+		width: 300px;
+		height: 30px;
+		line-height: 30px;
+		border:1px solid #8DA6CE;
+		border-radius: 15px;
+		position: relative;
+		float: left;
+		margin: 5px;
+	}
+	li a{
+		color: #61CE3C;
+		text-decoration: none;
+		position: relative;
+		left: 20px;
+		display:block;
+	}
+	li a:hover{
+		color: #FF6400;
+	}
+	li:hover{
+		border:1px solid #FF6400;
+		transform: translate3d(0,-2px,0);
+		box-shadow: 2px 5px 10px rgba(216,250,60,0.5);		
+	}
+</style>
+<script>
+	window.onload = function(){
+		var arrCont = [
+			{"href":"./my_net_world/my_net_world.html", "title":"我的网址导航", "cont":"我的网址导航"},
+
+			{"href":"http://fanyi.baidu.com/#en/zh/Mozilla", "title":"同 Mozilla Foundation:Mozilla基金会，是为支持和领导开源的Mozilla项目而设立的一个非营利组织", "cont":"Mozilla"},
+
+			{"href":"http://fanyi.baidu.com/#en/zh/Node.js%C2%AE%20is%20a%20JavaScript%20runtime%20built%20on%20Chrome's%20V8%20JavaScript%20engine.%20Node.js%20uses%20an%20event-driven%2C%20non-blocking%20I%2FO%20model%20that%20makes%20it%20lightweight%20and%20efficient.%20Node.js'%20package%20ecosystem%2C%20npm%2C%20is%20the%20largest%20ecosystem%20of%20open%20source%20libraries%20in%20the%20world.", "title":"Node.js", "cont":"Node.js"},
+
+			{"href":"https://baike.baidu.com/item/github/10145341?fr=aladdin", "title":"github", "cont":"github"},
+
+			{"href":"http://fanyi.baidu.com/#en/zh/Create%20a%20new%20repository", "title":"创建一个新的存储库", "cont":"Create a new repository"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/strategies", "title":"战略;对策;策略( strategy的名词复数 );战略学", "cont":"strategy"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Validator", "title":"验证器", "cont":"Validator"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/lazy", "title":"懒惰的;没精打采的;慢吞吞的", "cont":"lazy"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/console", "title":"vt.安慰，慰问 n.控制台，操纵台;演奏台;悬臂;肘托", "cont":"console"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/created", "title":"创建", "cont":"created"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/log", "title":"日志", "cont":"log"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/mounted", "title":"安装", "cont":"mounted"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/updated", "title":"更新", "cont":"updated"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/destroyed", "title":"摧毁", "cont":"destroyed"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/render", "title":"提供", "cont":"render"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/bind", "title":"绑定", "cont":"bind"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/dynamic", "title":"动态", "cont":"dynamic"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/behavior", "title":"行为", "cont":"behavior"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/performed", "title":"表演;履行;执行( perform的过去式和过去分词 );扮演", "cont":"performed"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/trailer", "title":"n.拖车;追踪者; <美>拖车式活动房屋;（电影或电视节目的）预告片 vt.用拖车运 vi.乘拖带式居住车旅行", "cont":"trailer"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Pattern", "title":"n.模式;图案;花样，样品;榜样，典范 vt.模仿;以图案装饰 vi.形成图案", "cont":"Pattern"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Refactor", "title":"重构", "cont":"Refactor"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/matrix", "title":"基质;<数>矩阵;模型;母体，子宫", "cont":"matrix"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Status", "title":"n.地位;身份;情形，状态", "cont":"Status"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/capture", "title":"vt.俘获;夺取;夺得;引起（注意、想像、兴趣） n.捕获;占领;捕获物;[计算机]捕捉", "cont":"capture"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Audits", "title":"n.审计，查账( audit的名词复数 ) v.审计，查账( audit的第三人称单数 )", "cont":"Audits"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/mailto", "title":"电子邮件;电子邮件地址;收件人", "cont":"mailto"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/visual", "title":"adj.视觉的，看得见的;光学的，视力的;形象化的;光学的 n.画面，图象", "cont":"visual"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/studio", "title":"工作室", "cont":"studio"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Refresh", "title":"刷新 vt.使恢复，使振作;使焕然一新，翻新;给（电池）充电 vi.恢复精神;补充给养", "cont":"Refresh"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/tutorial", "title":"n.个别辅导时间;教程，辅导材料;使用说明书;辅导课 adj.导师的;私人教师的;辅导的", "cont":"tutorial"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/servlet", "title":"小服务程序", "cont":"servlet"},
+
+			{"href":"https://baike.baidu.com/item/CGI/607810?fr=aladdin&fromid=6717913&fromtitle=%EF%BC%A3%EF%BC%A7%EF%BC%A9", "title":"通用网关接口", "cont":"CGI"},
+
+			{"href":"https://baike.baidu.com/item/perl/851577?fr=aladdin", "title":"perl语言", "cont":"perl"},
+
+			{"href":"https://baike.baidu.com/item/jdbc/485214", "title":"Java DataBase Connectivity,java数据库连接", "cont":"JDBC"},
+
+			{"href":"https://baike.baidu.com/item/JNDI/3792442?fr=aladdin", "title":"Java Naming and Directory Interface,Java命名和目录接口", "cont":"JNDI"},
+
+			{"href":"https://baike.baidu.com/item/EJB/144195?fr=aladdin", "title":"sun的JavaEE服务器端组件模型", "cont":"EJB"},
+
+			{"href":"https://baike.baidu.com/item/JAXP/3669704?fr=aladdin", "title":"XML处理的Java API", "cont":"JAXP"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/panel", "title":"n.镶板;面;（门、墙等上面的）嵌板;控制板 vt.选定（陪审团）;把…分格;在…上置鞍垫;把…镶入框架内", "cont":"panel"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/audits", "title":"n.审计，查账( audit的名词复数 ) v.审计，查账( audit的第三人称单数 )", "cont":"audits"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/browers", "title":"浏览器", "cont":"browers"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/performance", "title":"n.表现;表演;演技;执行 性能", "cont":"performance"},
+
+			{"href":"https://baike.baidu.com/item/Catalina/8735632?fr=aladdin", "title":"tomcat脚本名 太平洋中靠近洛杉矶的一个小岛 因为其风景秀丽而著名", "cont":"Catalina"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/API", "title":"abbr. Application Program Interface 应用程序接口; Application Programming Interface 应用编程接口; 美国石油组织; Armor Piercing Incendiary 穿甲燃烧弹", "cont":"API"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/preserve", "title":"vt.保护;保持，保存;腌制食物;防腐处理 vi.保鲜;保持原状;做蜜饯;禁猎 n.蜜饯;防护用品;禁猎地;独占的事物（或范围）", "cont":"preserve"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Hadoop", "title":"分布式计算", "cont":"Hadoop"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/factorial", "title":"adj.因子的，阶乘的 n.阶乘积，阶乘", "cont":"factorial"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/diamond", "title":"n.菱形;钻石，金刚石;方块 vt.镶钻石于;用钻石装饰 adj.金刚石的;菱形的;用钻石装饰的", "cont":"diamond"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/HollowRhombus", "title":"空心菱形", "cont":"HollowRhombus"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/utmost", "title":"adj.极度的，最大的，最远的 n.极限，最大限度", "cont":"utmost"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/bubble", "title":"n.泡，水泡;冒泡，起泡;泡影，妄想;（欲表达的）一点感情 vt.& vi.起泡，使冒气泡 vi.使冒泡，发出冒泡的声音;洋溢着（某种感情）;滔滔不绝地讲;兴奋，欢闹", "cont":"bubble"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/temp", "title":"n.临时雇员，（尤指）临时秘书 vi.打临时工，做临时工作，打零工 abbr.temperature温度", "cont":"temp"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/partition", "title":"n.分割;隔墙;划分，分开;隔离物 vt.分割;分开，隔开;区分", "cont":"partition"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Invalid", "title":"adj.无效的;不能成立的;有病的;病人用的 vt.使伤残;使退役;失去健康 n.病人，病号;残废者;伤病军人 vi.变得病弱;因病而奉命退役", "cont":"Invalid"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Host", "title":"主机", "cont":"Host"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Merges", "title":"v.融入; 归并（使）混合( merge的第三人称单数 );相融;渐渐消失在某物中", "cont":"Merges"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/prototype", "title":"n.原型，雏形，蓝本", "cont":"prototype"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/render", "title":"给予;使成为;递交;表达", "cont":"render"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/component", "title":"n.成分;组分;零件;[数]要素 adj.成分的;组成的;合成的;构成的", "cont":"component"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/props", "title":"n.道具;小道具;支柱( prop的名词复数 );支持者;（橄榄球中的）支柱前锋v.支撑，支持，维持( prop的第三人称单数 )", "cont":"props"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/combo", "title":"n.小型爵士乐队，小型伴舞乐队;<美口>套餐，如色拉、三明治、饮料等的组合食物", "cont":"combo"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/phase", "title":"n.阶段;相，周相;[物理学]相位;方面，侧面 vt.分阶段实行;调整相位 vi.分阶段进行", "cont":"phase"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/capture", "title":"vt.俘获;夺取;夺得;引起（注意、想像、兴趣）n.捕获;占领;捕获物;[计算机]捕捉", "cont":"capture"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/bubble", "title":"n.泡，水泡;冒泡，起泡;泡影，妄想;（欲表达的）一点感情 vt.& vi.起泡，使冒气泡vi.使冒泡，发出冒泡的声音;洋溢着（某种感情）;滔滔不绝地讲;兴奋，欢闹", "cont":"bubble"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Expires", "title":"期满( expire的第三人称单数 );文件、协议等（因到期而）失效;断气;逝世", "cont":"Expires"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/available", "title":"adj.可获得的;有空的;可购得的;能找到的", "cont":"available"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/temporary", "title":"adj.短暂的;临时的，暂时的 n.临时工，临时雇员", "cont":"temporary"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/permanently", "title":"adv.永久地，长期不变地", "cont":"permanently"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/module", "title":"n.模块;组件;（宇宙飞船上各个独立的）舱;测量流水等的单位", "cont":"module"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Store%20as%20global%20variable", "title":"存储为全局变量", "cont":"Store as global variable"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/Expand%20%20recursively", "title":"展开", "cont":"Expand  recursively "},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/registry", "title":"n.记录，登记;登记处，挂号处;记录簿;船舶的国籍 注册表", "cont":"registry"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/manifest", "title":"vt.显示，表明;证明;使显现 adj.明白的，明显的 n.货单，旅客名单", "cont":"manifest"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/perserver%20log", "title":"服务器日志", "cont":"perserver log"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/cache", "title":"n.藏物处;隐藏处;藏匿的珍宝;<电脑>快速缓冲贮存区 vt.贮藏 vi.躲藏", "cont":"cache"},
+
+			{"href":"https://fanyi.baidu.com/#en/zh/resize", "title":"调整大小", "cont":"resize"},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+			{"href":"", "title":"", "cont":""},
+
+			
+
+
+		];
+		var str = '';
+		for(var i = 0; i < arrCont.length; i++){
+			str += '<li><a href="'+ arrCont[i].href +'" title="'+ arrCont[i].title +'" target="_blank">'+ i +' 、'+ arrCont[i].cont +'</a></li>';
+		}
+		var oUl = document.createElement('ul');
+		var oContainer = document.createElement('div');
+		oContainer.id = 'container';
+		oUl.innerHTML = str;
+		oContainer.appendChild(oUl);
+		document.body.appendChild(oContainer);
+	}
+</script>
+
+</head>
+<body>
+</body>
+</html>
