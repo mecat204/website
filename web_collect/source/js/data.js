@@ -16,6 +16,18 @@ var arr = [
 		"cont":"音乐家.md"
 	},
     {
+		"href":"/website/note/gitbash-command.md",
+		"cont":"gitbash-command.md"
+	},
+    {
+		"href":"/website/note/gitbash.md",
+		"cont":"gitbash.md"
+	},
+    {
+		"href":"/website/note/ssh-agent.md",
+		"cont":"ssh-agent.md"
+	},
+    {
 		"href":"/website/note/时间越来越快的原因.md",
 		"cont":"时间越来越快的原因.md"
 	},
