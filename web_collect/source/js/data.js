@@ -2384,7 +2384,7 @@ var arr = [
 
     //2024.10.09
     {
-		"href":"/website/web_collect/source/pwd.html",
+		"href":"/website/web_collect/pwd/pwd.html",
 		"cont":"pwd"
 	},
     {
