@@ -12,6 +12,14 @@ var arr = [
 		"cont":"3D相册·凡人修仙传·2d_photo-chatGPT-优化版"
     },
     {
+        "href":"/website/web_collect/抖音时钟.html",
+		"cont":"抖音时钟"
+    },
+    {
+        "href":"/website/web_collect/抖音时钟-ChatGPT.html",
+		"cont":"抖音时钟-ChatGPT"
+    },
+    {
         "href":"/website/source/cctv.film/index.html",
 		"cont":"CCTV.Film"
     },

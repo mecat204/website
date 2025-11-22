@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>抖音时钟</title>
+    <style>
+        /* 全局样式重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: '微软雅黑';
+        }
+        body {
+            background-color: #000;
+        }
+        ul, li {
+            list-style: none;
+        }
+        /* 外层容器 */
+        ul {
+            position: fixed;
+            left: 0; right: 0; top: 0; bottom: 0;
+            margin: auto;
+            width: 0;
+            height: 0;
+        }
+        /* li 样式：从左侧旋转显示 */
+        li {
+            text-align: right;
+            transform-origin: left 50%;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            margin-top: -50%;
+            transition: all ease 0.5s;
+            color: #666;
+            user-select: none;
+        }
+        /* 各个时间单位 li 宽度控制 */
+        .s li { width: 420px; }   /* 秒 */
+        .m li { width: 350px; }   /* 分 */
+        .h li { width: 280px; }   /* 小时 */
+        .sx li { width: 210px; }  /* 上午/下午 */
+        .d li { width: 170px; }   /* 日期 */
+        .M li { width: 100px; }   /* 月份 */
+        .Y li {
+            left: 0;
+            transform: translate(-50%);
+            word-break: keep-all;
+            color: #fff;  /* 年份始终白色 */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 年份 -->
+    <ul class="Y"><li>2019年</li></ul>
+    <!-- 秒、分、小时、午、日期、月份 -->
+    <ul class="s"></ul>
+    <ul class="m"></ul>
+    <ul class="h"></ul>
+    <ul class="sx"></ul>
+    <ul class="d"></ul>
+    <ul class="M"></ul>
+
+    <!-- jQuery 引入 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        /********************
+         * 中文数字转换函数 *
+         ********************/
+        var chnNumChar = ["零","一","二","三","四","五","六","七","八","九"];
+        var chnUnitSection = ["","万","亿","万亿","亿亿"];
+        var chnUnitChar = ["","十","百","千"];
+
+        // 将数字分段转为中文
+        function SectionToChinese(section){
+            var strIns = '', chnStr = '';
+            var unitPos = 0;
+            var zero = true;
+            while(section > 0){
+                var v = section % 10;
+                if(v === 0){
+                    if(!zero){
+                        zero = true;
+                        chnStr = chnNumChar[v] + chnStr;
+                    }
+                } else {
+                    zero = false;
+                    strIns = chnNumChar[v] + chnUnitChar[unitPos];
+                    chnStr = strIns + chnStr;
+                }
+                unitPos++;
+                section = Math.floor(section / 10);
+            }
+            return chnStr;
+        }
+
+        // 将完整数字转为中文
+        function NumberToChinese(num){
+            var unitPos = 0;
+            var strIns = '', chnStr = '';
+            var needZero = false;
+            if(num === 0) return chnNumChar[0];
+            while(num > 0){
+                var section = num % 10000;
+                if(needZero){
+                    chnStr = chnNumChar[0] + chnStr;
+                }
+                strIns = SectionToChinese(section);
+                strIns += (section !== 0) ? chnUnitSection[unitPos] : chnUnitSection[0];
+                chnStr = strIns + chnStr;
+                needZero = (section < 1000) && (section > 0);
+                num = Math.floor(num / 10000);
+                unitPos++;
+            }
+            return chnStr;
+        }
+
+        // 获取某年某月天数
+        function mGetDate(year, month){
+            var d = new Date(year, month, 0);
+            return d.getDate();
+        }
+
+        /********************
+         * 初始化时间滚轮 *
+         ********************/
+        function rotate(selector, t) {
+            t = +t
+            var lis = $(selector)
+            for (var i = 0; i < lis.length; i++) {
+                var rotateVal = (lis.length - i + t);
+                lis.eq(i).css('transform', 'rotate(' + rotateVal * 360 / lis.length + 'deg)');
+                // 当前值高亮
+                rotateVal % lis.length == 0 && lis.eq(i).css('color', '#fff').siblings().css('color', '#666');
+            }
+            // 归零处理，保证循环顺滑
+            if (t == lis.length - 1) {
+                setTimeout(function () {
+                    lis.css('transition', 'unset')
+                    for (var i = 0; i < lis.length; i++) {
+                        var rotateVal = lis.length - i - 1;
+                        lis.eq(i).css('transform', 'rotate(' + rotateVal * 360 / lis.length + 'deg)');
+                        rotateVal % lis.length == 0 && lis.eq(i).css('color', '#fff').siblings().css('color', '#666');
+                    }
+                    setTimeout(function () {
+                        lis.css('transition', 'all ease .5s');
+                    }, 200);
+                }, 500);
+            }
+        }
+
+        // 初始化 ul 中的 li
+        function init(selector, num, label, len) {
+            num = +num;
+            for (var i = 0; i < len; i++) {
+                var showNum = label === '午' ? (i == 1 ? '上' : '下') : NumberToChinese(i);
+                showNum = (label === '月' || label === '号' || label === '点') && i === 0 ? NumberToChinese(len) : showNum;
+                var rotateVal = num == len - 1 ? len - i - 1 : len - i + num;
+                if (rotateVal % len == 0) {
+                    $(selector).append('<li style="color:#fff;transform: rotate(' + rotateVal * 360 / len + 'deg);">' + showNum + label + '</li>');
+                } else {
+                    $(selector).append('<li style="transform: rotate(' + rotateVal * 360 / len + 'deg);">' + showNum + label + '</li>');
+                }
+            }
+        }
+
+        // 获取当前时间
+        function getNow () {
+            var date = new Date();
+            var s = date.getSeconds();
+            var m = date.getMinutes();
+            var h = date.getHours();
+            var sx = h < 12 ? 1 : 0;  // 上/下午
+            h = h > 12 ? h - 12 : h;
+            var d = date.getDate();
+            var M = date.getMonth() + 1;
+            var y = date.getFullYear();
+            // 归零处理
+            d = d == mGetDate(y, M) ? 0 : d;
+            M = M == 12 ? 0 : M;
+            h = h == 12 ? 0 : h;
+            return {s, m, h, d, M, sx, y};
+        }
+
+        /********************
+         * 主程序入口 *
+         ********************/
+        var start = getNow();
+        $('.Y li').text(start.y + '年');
+        init('.s', start.s, '秒', 60);
+        init('.m', start.m, '分', 60);
+        init('.h', start.h, '点', 12);
+        init('.sx', start.sx, '午', 2);
+        init('.d', start.d, '号', mGetDate(start.y, start.M));
+        init('.M', start.M, '月', 12);
+
+        // 每秒更新
+        setInterval(function () {
+            var now = getNow();
+            if (start.s != now.s) { rotate('.s li', now.s); start.s = now.s; }
+            if (start.m != now.m) { rotate('.m li', now.m); start.m = now.m; }
+            if (start.h != now.h) { rotate('.h li', now.h); start.h = now.h; }
+            if (start.sx != now.sx) { rotate('.sx li', now.sx); start.sx = now.sx; }
+            if (start.d != now.d) { rotate('.d li', now.d); start.d = now.d; }
+            if (start.M != now.M) {
+                // 月份变化时更新日期
+                setTimeout(function () {
+                    $('.d li').remove();
+                    init('.d', now.d, '号', mGetDate(now.y, now.M));
+                }, 500);
+                rotate('.M li', now.M);
+                start.M = now.M;
+            }
+            if (start.y != now.y) { $('.Y li').text(now.y + '年'); start.y = now.y; }
+        }, 1000);
+    </script>
+</body>
+</html>
