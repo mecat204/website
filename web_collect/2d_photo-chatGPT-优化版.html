@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<meta name="author" content="chatGPT">
 <title>滑动相册</title>
 <style>
 * {margin:0; padding:0; box-sizing:border-box;}
@@ -97,7 +98,7 @@ function update() {
     }
 
     const x = diff * GAP;
-    const scale = SCALE_CENTER - abs * 0.22; 
+    const scale = SCALE_CENTER - abs * 0.22;
     const opacity = 1 - abs * 0.22;
 
     items[i].style.opacity = opacity;
