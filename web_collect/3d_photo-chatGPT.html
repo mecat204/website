@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>3D 相册 · 优化专业版</title>
+
+<style>
+/* =============================
+   通用样式
+   ============================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: #000;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* =============================
+   3D 场景设置（景深）
+   ============================= */
+#stage {
+    perspective: 1400px; /* 更自然的景深 */
+}
+
+/* =============================
+   相册容器
+   ============================= */
+#carousel {
+    width: 260px;           /* 图片尺寸（可调） */
+    height: 360px;
+    margin: 0 auto;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-12deg) rotateY(0deg);
+    transition: transform 0.2s ease-out;
+}
+
+/* =============================
+   每张照片样式
+   ============================= */
+#carousel img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+
+    /* 柔和阴影 */
+    box-shadow: 0 10px 25px rgba(255, 20, 120, 0.6);
+
+    /* 倒影 */
+    -webkit-box-reflect: below 10px linear-gradient(transparent, rgba(0,0,0,0.4));
+
+    /* 默认位置（会被 JS 改成自动环形） */
+    transform: rotateY(0deg) translateZ(600px);
+    transition: transform 1s;
+}
+
+/* =============================
+   底部光环
+   ============================= */
+#halo {
+    width: 1800px;
+    height: 1800px;
+    position: absolute;
+    left: 50%;
+    top: 120%;
+    transform: translateX(-50%) rotateX(90deg);
+    background: radial-gradient(circle, rgba(255,0,120,0.25), transparent 70%);
+    border-radius: 50%;
+}
+</style>
+</head>
+
+<body>
+    <div id="stage">
+        <div id="carousel">
+            <!-- 你的图片，数量随便加 -->
+            <img src="./me.pic/images/0001.jpeg" />
+            <img src="./me.pic/images/0002.jpeg" />
+            <img src="./me.pic/images/0003.jpeg" />
+            <img src="./me.pic/images/0004.jpeg" />
+            <img src="./me.pic/images/0005.jpeg" />
+            <img src="./me.pic/images/0006.jpeg" />
+            <img src="./me.pic/images/0007.jpeg" />
+            <img src="./me.pic/images/0008.jpeg" />
+            <img src="./me.pic/images/0009.jpeg" />
+            <img src="./me.pic/images/0010.jpeg" />
+            <img src="./me.pic/images/0011.jpeg" />
+            <img src="./me.pic/images/0012.jpeg" />
+            <div id="halo"></div>
+        </div>
+    </div>
+
+<script>
+/* ==========================================
+   高级优化版交互逻辑（更丝滑、更精准）
+   ========================================== */
+
+window.onload = function () {
+    const wrap = document.getElementById("carousel");
+    const imgs = wrap.getElementsByTagName("img");
+    const total = imgs.length;
+    const degree = 360 / total; // 每张图的旋转角度
+
+    let roX = -12; // 初始 X 角度
+    let roY = 0;   // 初始 Y 角度
+    let speedX = 0;
+    let speedY = 0;
+
+    /*
+        =============================
+        布局：让所有图片均匀围成圆形
+        =============================
+    */
+    for (let i = 0; i < total; i++) {
+        imgs[i].style.transform = `rotateY(${i * degree}deg) translateZ(700px)`;
+        imgs[i].style.transitionDelay = `${(total - i) * 0.08}s`;
+    }
+
+    /* =============================
+       自动居中屏幕（保持垂直居中）
+       ============================= */
+    function recalcTop() {
+        wrap.style.marginTop = window.innerHeight / 2 - 180 + "px";
+    }
+    recalcTop();
+    window.onresize = recalcTop;
+
+    /* =============================
+       鼠标控制旋转（带惯性）
+       ============================= */
+    let lastX, lastY;
+    let isDown = false;
+
+    document.onmousedown = (e) => {
+        isDown = true;
+        lastX = e.clientX;
+        lastY = e.clientY;
+    };
+
+    document.onmousemove = (e) => {
+        if (!isDown) return;
+
+        const nowX = e.clientX;
+        const nowY = e.clientY;
+
+        const dx = nowX - lastX;
+        const dy = nowY - lastY;
+
+        speedX = dx * 0.15; // 惯性速度
+        speedY = dy * 0.15;
+
+        roY += speedX;
+        roX -= speedY;
+
+        wrap.style.transform = `rotateX(${roX}deg) rotateY(${roY}deg)`;
+
+        lastX = nowX;
+        lastY = nowY;
+    };
+
+    document.onmouseup = () => (isDown = false);
+
+    /* =============================
+       惯性动画（完全改成 requestAnimationFrame）
+       ============================= */
+    function animate() {
+        if (!isDown) {
+            // 摩擦阻力
+            speedX *= 0.95;
+            speedY *= 0.95;
+
+            // 小于阈值停止惯性
+            if (Math.abs(speedX) < 0.1 && Math.abs(speedY) < 0.1) {
+                speedX = speedY = 0;
+            }
+
+            roY += speedX;
+            roX -= speedY;
+
+            wrap.style.transform = `rotateX(${roX}deg) rotateY(${roY}deg)`;
+        }
+
+        requestAnimationFrame(animate);
+    }
+
+    animate(); // 启动动画
+};
+</script>
+</body>
+</html>

@@ -4,6 +4,14 @@ var arr = [
 		"cont":"3D相册·凡人修仙传"
     },
     {
+        "href":"/website/web_collect/3d_photo-chatGPT.html",
+		"cont":"3D相册·凡人修仙传·3d_photo-chatGPT"
+    },
+    {
+        "href":"/website/web_collect/2d_photo-chatGPT-优化版.html",
+		"cont":"3D相册·凡人修仙传·2d_photo-chatGPT-优化版"
+    },
+    {
         "href":"/website/source/cctv.film/index.html",
 		"cont":"CCTV.Film"
     },

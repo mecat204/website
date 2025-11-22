@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>3D 相册 · 左右滑动版</title>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        background: #000;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: sans-serif;
+    }
+
+    /* 相册容器 */
+    #album3d {
+        width: 90vw;
+        height: 300px;
+        position: relative;
+        overflow: visible;
+    }
+    .carousel {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+    .track {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: relative;
+        transition: transform 0.25s ease-out;
+    }
+
+    /* 每一张图的包裹 */
+    .item {
+        position: absolute;
+        width: 200px;
+        height: 260px;
+        transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .item img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 8px 15px rgba(255,0,80,0.35);
+        -webkit-box-reflect: below 5px
+            linear-gradient(transparent, rgba(0,0,0,0.45));
+    }
+</style>
+</head>
+<body>
+
+<div id="album3d">
+    <div class="carousel">
+        <div class="track">
+
+            <!-- 图片列表（按需填充） -->
+            <div class="item"><img src="./me.pic/images/0001.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0002.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0003.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0004.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0005.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0006.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0007.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0008.jpeg"></div>
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+/* =============================
+      主要配置项
+============================= */
+const VISIBLE = 5;            // 同时显示的数量
+const SCALE_CENTER = 1.25;     // 中间放大比例
+const GAP = 140;               // 图片水平间距
+
+/* =============================
+      核心程序
+============================= */
+const items = [...document.querySelectorAll(".item")];
+let current = 0;              // 当前中间项下标
+let startX = 0;
+let deltaX = 0;
+let isDown = false;
+
+function update() {
+    const len = items.length;
+
+    for (let i = 0; i < len; i++) {
+        const diff = i - current;
+
+        // 循环（环状）
+        let d = diff;
+        if (d > len / 2) d -= len;
+        if (d < -len / 2) d += len;
+
+        const abs = Math.abs(d);
+
+        // 超出显示范围隐藏
+        if (abs > Math.floor(VISIBLE / 2)) {
+            items[i].style.opacity = 0;
+            items[i].style.transform = "scale(0.5)";
+            continue;
+        }
+
+        // 水平位置
+        const x = d * GAP;
+
+        // 缩放：中间放大 25%，左右逐渐缩小
+        const scale = SCALE_CENTER - abs * 0.15;
+
+        // 透明度也随距离变化
+        const opacity = 1 - abs * 0.25;
+
+        items[i].style.opacity = opacity;
+        items[i].style.transform = `translateX(${x}px) scale(${scale})`;
+    }
+}
+
+update();
+
+/* =============================
+      交互：拖动/滑动
+============================= */
+function mousedown(e) {
+    isDown = true;
+    startX = e.clientX || e.touches[0].clientX;
+}
+function mousemove(e) {
+    if (!isDown) return;
+    const x = e.clientX || e.touches[0].clientX;
+    deltaX = x - startX;
+
+    if (deltaX > 30) {
+        current = (current - 1 + items.length) % items.length;
+        startX = x;
+        update();
+    } else if (deltaX < -30) {
+        current = (current + 1) % items.length;
+        startX = x;
+        update();
+    }
+}
+function mouseup() {
+    isDown = false;
+}
+
+/* PC 鼠标 */
+document.addEventListener("mousedown", mousedown);
+document.addEventListener("mousemove", mousemove);
+document.addEventListener("mouseup", mouseup);
+
+/* 手机触摸 */
+document.addEventListener("touchstart", mousedown);
+document.addEventListener("touchmove", mousemove);
+document.addEventListener("touchend", mouseup);
+</script>
+
+</body>
+</html>

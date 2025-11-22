@@ -2,162 +2,154 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="KeyWords" content="">
-<meta name="Description" content="">
-<title>3D相册·凡人修仙传</title>
+<title>3D相册·凡人修仙传（优化版）</title>
+
 <style>
-/*去掉内外边距*/
 *{
-	margin:0px;
-	padding: 0px;
+	margin:0;
+	padding:0;
 }
 body{
-	background-color:black; /*整个后面大的背景*/
-	overflow: hidden; /*取消滚动条*/
-	}
+	background:black;
+	overflow:hidden;
+}
+
 #perspective{
-	/*设置景深*/
-	perspective:800px;
+	perspective:1000px; /* 景深更深 */
 }
-  /*设置盛放照片的div*/
+
+/* 整个相册容器 */
 #wrap{
-	width:120px;
-	height: 180px;
-	/*border:1px solid yellow;*/  /*建议学习的同仁把这个恢复后再运行，方便理解代码，但是印象美观*/
-    position: relative;
-    margin:0px auto;
-    /*创建3D场景*/
-    transform-style:preserve-3d;
-    /*让照片出现后上下呈一定角度*/
-    transform: rotateX(-10deg) rotateY(0deg);
+	width:200px;   /* 图片更大 */
+	height:300px;
+	position:relative;
+	margin:0 auto;
+	transform-style:preserve-3d;
+	transform:rotateX(-10deg) rotateY(0deg);
 }
-/*给图片添加样式和属性*/
+
+/* 图片样式 */
 #wrap img{
 	position:absolute;
 	width:100%;
-	height: 100%;
-	border-radius: 5px;
-	/*给照片添加圆角和阴影*/
-	box-shadow: 0 0 2px pink;
-	transform: rotateY(0deg) translateZ(0px);
-	/*倒影：朝向 偏移 遮盖 */ /* 线性渐变(从哪里开始) 开始时候的颜色 结束时候的颜色*/
-	 -webkit-box-reflect:below 5px -webkit-linear-gradient(top,rgba(0,0,0,0) 10%,rgba(0,0,0,0.5) 60%);
-	}
-/*底座光环*/
+	height:100%;
+	border-radius:10px;
+
+	/* 柔和一点的阴影 */
+	box-shadow:0 0 10px rgba(255,100,150,0.8);
+
+	/* 反射倒影 */
+	-webkit-box-reflect:below 8px -webkit-linear-gradient(top,rgba(0,0,0,0) 20%,rgba(0,0,0,0.5) 70%);
+}
+
+/* 底部光环 */
 #wrap p{
-	width:1200px;
-	height: 1200px;
-	/*径向渐变 (从哪里开始) 扩散程度
-	开始时候的颜色  结束时候的颜色*/
-	background:-webkit-radial-gradient(center center,600px 600px,rgba(242,23,134,0.2), rgba(0,0,0,0));
+	width:1500px;
+	height:1500px;
+	background:-webkit-radial-gradient(center center,700px 700px,rgba(255,0,120,0.18),rgba(0,0,0,0));
 	border-radius:100%;
-	position: absolute;
-	top:102%;
-    left: 50%;
-    margin-left:-600px;
-    margin-top: -600px;
-    transform: rotateX(90deg);
+	position:absolute;
+	top:105%;
+	left:50%;
+	margin-left:-750px;
+	margin-top:-750px;
+	transform:rotateX(90deg);
 }
 </style>
-jpeg<script type="text/javascript">
+
+<script>
 window.onload = function(){
 	var oWrap = document.getElementById("wrap");
-	var oImg = oWrap.getElementsByTagName("img");
-	var oImgLength = oImg.length;
-	var Deg = 360/oImgLength; //获取度数
-	var nowX;
-	var nowY;
-	var lastX;
-	var lastY;
-	var minuseX = 0;
-	var minuseY = 0;
-	var roX = -10;
-	var roY = 0;
-	var timer;
+	var imgs = oWrap.getElementsByTagName("img");
+	var len = imgs.length;
+	var deg = 360 / len;
 
-	//给img设置旋转度
-	for(var i = 0; i < oImgLength; i++){
-		oImg[i].style.transform = 'rotateY('+i*Deg+'deg)translateZ(350px)'
+	var nowX, nowY;
+	var lastX, lastY;
+	var minusX = 0, minusY = 0;
+	var roX = -10, roY = 0;
+	var timer = null;
 
-		oImg[i].style.transition = 'transform 1s '+(oImgLength-1-i)*0.1+'s';
+	/* 调大旋转半径：translateZ(500px) */
+	for(let i=0; i<len; i++){
+		imgs[i].style.transform = `rotateY(${i*deg}deg) translateZ(500px)`;
+		imgs[i].style.transition = `transform 1s ${(len-1-i)*0.1}s`;
 	}
 
-	mTop();
-		window.onresize = mTop;
-		function mTop(){
-			var wH = document.documentElement.clientHeight;
-			oWrap.style.marginTop = wH / 2 - 180 + 'px';
-		}
-	//  三个鼠标事件
-    //  按下   按下后移动   提起
+	/* 居中 */
+	setWrapTop();
+	window.onresize = setWrapTop;
+	function setWrapTop(){
+		var h = document.documentElement.clientHeight;
+		oWrap.style.marginTop = (h/2 - 150) + "px"; /* 根据新高度300调整 */
+	}
 
-    //  第一个
+	/* 鼠标事件 */
 	document.onmousedown = function(ev){
-		var ev = ev||window.event;
+		ev = ev || window.event;
 		lastX = ev.clientX;
 		lastY = ev.clientY;
 
-		//鼠标移动
-		this.onmousemove = function(ev){
-			var ev = ev||window.event;
+		document.onmousemove = function(ev){
+			ev = ev || window.event;
 			clearInterval(timer);
-		//拿到当前坐标的值：
+
 			nowX = ev.clientX;
 			nowY = ev.clientY;
-		//获取差值
-			minuseX = nowX -lastX;
-			minuseY = nowY - lastY;
-		//更新wrap的旋转角度，拖拽越快--> minus变化越大->
-        //roY变化越大  旋转越快
-			roX -= minuseY*0.1;
-			roY += minuseX*0.2;
-			console.log(roX);
-			// console.log("当前点X坐标"+lastX)
-            // console.log("当前点Y坐标"+lastY)
 
-			oWrap.style.transform = 'rotateX('+roX+'deg) rotateY('+roY+'deg)';
+			minusX = nowX - lastX;
+			minusY = nowY - lastY;
+
+			roY += minusX * 0.2;
+			roX -= minusY * 0.1;
+
+			oWrap.style.transform = `rotateX(${roX}deg) rotateY(${roY}deg)`;
+
 			lastX = nowX;
 			lastY = nowY;
-		}
-		// 第三个事件  提起
-		this.onmouseup = function(){
-			this.onmousemove = null;
+		};
+
+		document.onmouseup = function(){
+			document.onmousemove = null;
+
 			timer = setInterval(function(){
-				minuseX *= 0.95; ///让距离越来越小，乘以摩擦系数
-				///让差值无限次乘以一个小数  值会无限接近零 但不会等于零
-                ///console.log(minuseX)
-				minuseY *= 0.95;
-				roY += minuseX*0.2;
-				roX -= minuseY*0.1;
-				oWrap.style.transform = 'rotateX('+roX+'deg)rotateY('+roY+'deg)';
-				if(Math.abs(minuseX)<0.2 && Math.abs(minuseY)<0.1){
+				minusX *= 0.95;
+				minusY *= 0.95;
+
+				roY += minusX * 0.2;
+				roX -= minusY * 0.1;
+
+				oWrap.style.transform = `rotateX(${roX}deg) rotateY(${roY}deg)`;
+
+				if(Math.abs(minusX)<0.3 && Math.abs(minusY)<0.3){
 					clearInterval(timer);
 				}
+			}, 16);
+		};
 
-			},13)
-		}
-		return false; ///取消鼠标默认事件
-	}
-}
+		return false;
+	};
+};
 </script>
 </head>
+
 <body>
-<div id="perspective">
-	<div id="wrap">
-		<img src="./me.pic/images/0001.jpeg" alt="">
-		<img src="./me.pic/images/0002.jpeg" alt="">
-		<img src="./me.pic/images/0003.jpeg" alt="">
-		<img src="./me.pic/images/0004.jpeg" alt="">
-		<img src="./me.pic/images/0005.jpeg" alt="">
-		<img src="./me.pic/images/0006.jpeg" alt="">
-		<img src="./me.pic/images/0007.jpeg" alt="">
-		<img src="./me.pic/images/0008.jpeg" alt="">
-		<img src="./me.pic/images/0009.jpeg" alt="">
-		<img src="./me.pic/images/0010.jpeg" alt="">
-		<img src="./me.pic/images/0011.jpeg" alt="">
-		<img src="./me.pic/images/0012.jpeg" alt="">
-		<p></p>
+	<div id="perspective">
+		<div id="wrap">
+			<img src="./me.pic/images/0001.jpeg">
+			<img src="./me.pic/images/0002.jpeg">
+			<img src="./me.pic/images/0003.jpeg">
+			<img src="./me.pic/images/0004.jpeg">
+			<img src="./me.pic/images/0005.jpeg">
+			<img src="./me.pic/images/0006.jpeg">
+			<img src="./me.pic/images/0007.jpeg">
+			<img src="./me.pic/images/0008.jpeg">
+			<img src="./me.pic/images/0009.jpeg">
+			<img src="./me.pic/images/0010.jpeg">
+			<img src="./me.pic/images/0011.jpeg">
+			<img src="./me.pic/images/0012.jpeg">
+			<p></p>
+		</div>
 	</div>
-</div>
 </body>
 </html>

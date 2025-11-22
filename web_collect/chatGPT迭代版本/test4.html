@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>滑动相册</title>
+<style>
+* {margin:0; padding:0; box-sizing:border-box;}
+body {
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* 主容器 */
+#album3d {
+  width: 100vw;
+  height: 380px;
+  position: relative;
+  overflow: visible;
+}
+
+
+/* 轨道容器，负责水平居中 */
+.track {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  display: flex;
+  align-items: center;
+  pointer-events: none; /* 让拖拽更稳 */
+}
+
+/* 单张图片 */
+.item {
+  position: absolute;
+  width: 250px;   /* 放大 50% */
+  height: 340px;
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 15px rgba(255,30,90,0.25);
+  -webkit-box-reflect: below 6px linear-gradient(transparent, rgba(0,0,0,0.4));
+}
+</style>
+</head>
+<body>
+
+<div id="album3d">
+  <div class="carousel">
+    <div class="track">
+      <div class="item"><img src="./me.pic/images/0001.jpeg"></div>
+      <div class="item"><img src="./me.pic/images/0002.jpeg"></div>
+      <div class="item"><img src="./me.pic/images/0003.jpeg"></div>
+      <div class="item"><img src="./me.pic/images/0004.jpeg"></div>
+      <div class="item"><img src="./me.pic/images/0005.jpeg"></div>
+      <div class="item"><img src="./me.pic/images/0006.jpeg"></div>
+      <div class="item"><img src="./me.pic/images/0007.jpeg"></div>
+      <div class="item"><img src="./me.pic/images/0008.jpeg"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const items = [...document.querySelectorAll(".item")];
+const VISIBLE = 5;
+
+// === 间距调大：480px，绝对不会有重叠 ===
+const GAP = 480;
+
+// === 中间图片放大：1.7（70%）===
+const SCALE_CENTER = 1.7;
+
+let current = 0;
+
+// ===== 更新布局 =====
+function update() {
+  const len = items.length;
+  for (let i=0;i<len;i++){
+    let diff = i - current;
+
+    // 环形位置修正
+    if(diff > len/2) diff -= len;
+    if(diff < -len/2) diff += len;
+
+    const abs = Math.abs(diff);
+
+    if(abs > Math.floor(VISIBLE/2)){
+      items[i].style.opacity = 0;
+      items[i].style.transform = 'scale(0.5)';
+      continue;
+    }
+
+    const x = diff * GAP;
+    const scale = SCALE_CENTER - abs * 0.22;
+    const opacity = 1 - abs * 0.22;
+
+    items[i].style.opacity = opacity;
+    items[i].style.transform = `translateX(${x}px) scale(${scale})`;
+  }
+}
+update();
+
+// ===== 拖拽逻辑 =====
+let startX = 0;
+let isDown = false;
+
+function down(e){
+  isDown = true;
+  startX = e.clientX || e.touches?.[0].clientX;
+}
+
+function move(e){
+  if(!isDown) return;
+  const x = e.clientX || e.touches?.[0].clientX;
+  const dx = x - startX;
+
+  if(dx > 18){
+    current = (current - 1 + items.length) % items.length;
+    startX = x;
+    update();
+  } else if(dx < -18){
+    current = (current + 1) % items.length;
+    startX = x;
+    update();
+  }
+}
+
+function up(){ isDown = false; }
+
+document.addEventListener("pointerdown", down);
+document.addEventListener("pointermove", move);
+document.addEventListener("pointerup", up);
+document.addEventListener("pointercancel", up);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>2D 滑动相册（带中心放大）</title>
+
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    #album3d {
+        width: 95vw;
+        height: 350px;
+        position: relative;
+        overflow: visible;
+    }
+
+    .carousel {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .track {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* 每张图的容器 */
+    .item {
+        position: absolute;
+        width: 220px;
+        height: 300px;
+        transition: transform 0.35s ease, opacity 0.35s ease;
+    }
+
+    .item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 12px;
+
+        /* 倒影 */
+        -webkit-box-reflect: below 6px linear-gradient(transparent, rgba(0,0,0,0.4));
+
+        /* 阴影淡一点 */
+        box-shadow: 0 8px 15px rgba(255,30,90,0.25);
+    }
+</style>
+
+</head>
+<body>
+
+<div id="album3d">
+    <div class="carousel">
+        <div class="track">
+
+            <!-- 图片列表 -->
+            <div class="item"><img src="./me.pic/images/0001.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0002.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0003.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0004.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0005.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0006.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0007.jpeg"></div>
+            <div class="item"><img src="./me.pic/images/0008.jpeg"></div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+/* =============================
+   配置项（你可以改这里）
+============================= */
+const VISIBLE = 5;         // 同时显示的数量
+const GAP = 260;           // 图片之间的间距（关键！）
+const SCALE_CENTER = 1.25; // 中间放大 25%
+
+/* =============================
+       核心程序
+============================= */
+const items = [...document.querySelectorAll(".item")];
+let current = 0;
+let startX = 0;
+let isDown = false;
+
+function update() {
+    const len = items.length;
+
+    for (let i = 0; i < len; i++) {
+        let diff = i - current;
+
+        // 无限循环
+        if (diff > len / 2) diff -= len;
+        if (diff < -len / 2) diff += len;
+
+        const abs = Math.abs(diff);
+
+        // 超出可视范围隐藏
+        if (abs > Math.floor(VISIBLE / 2)) {
+            items[i].style.opacity = 0;
+            items[i].style.transform = `scale(0.6
