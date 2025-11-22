@@ -1,5 +1,9 @@
 var arr = [
     {
+        "href":"/website/web_collect/3d_photo.html",
+		"cont":"3D相册·凡人修仙传"
+    },
+    {
         "href":"/website/source/cctv.film/index.html",
 		"cont":"CCTV.Film"
     },

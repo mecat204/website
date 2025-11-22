@@ -4,59 +4,59 @@
 <meta charset="UTF-8">
 <meta name="KeyWords" content="">
 <meta name="Description" content="">
-<title>3D相册</title>
+<title>3D相册·凡人修仙传</title>
 <style>
 /*去掉内外边距*/
 *{
-	margin:0px; 
+	margin:0px;
 	padding: 0px;
 }
-body{ 
+body{
 	background-color:black; /*整个后面大的背景*/
 	overflow: hidden; /*取消滚动条*/
-	} 
+	}
 #perspective{
-	/*设置景深*/ 
+	/*设置景深*/
 	perspective:800px;
 }
   /*设置盛放照片的div*/
-#wrap{ 
-	width:120px; 
+#wrap{
+	width:120px;
 	height: 180px;
 	/*border:1px solid yellow;*/  /*建议学习的同仁把这个恢复后再运行，方便理解代码，但是印象美观*/
-    position: relative; 
-    margin:0px auto; 
-    /*创建3D场景*/ 
-    transform-style:preserve-3d; 
+    position: relative;
+    margin:0px auto;
+    /*创建3D场景*/
+    transform-style:preserve-3d;
     /*让照片出现后上下呈一定角度*/
-    transform: rotateX(-10deg) rotateY(0deg); 
+    transform: rotateX(-10deg) rotateY(0deg);
 }
 /*给图片添加样式和属性*/
-#wrap img{ 
+#wrap img{
 	position:absolute;
-	width:100%; 
-	height: 100%; 
-	border-radius: 5px; 
+	width:100%;
+	height: 100%;
+	border-radius: 5px;
 	/*给照片添加圆角和阴影*/
 	box-shadow: 0 0 2px pink;
-	transform: rotateY(0deg) translateZ(0px);  
+	transform: rotateY(0deg) translateZ(0px);
 	/*倒影：朝向 偏移 遮盖 */ /* 线性渐变(从哪里开始) 开始时候的颜色 结束时候的颜色*/
-	 -webkit-box-reflect:below 5px -webkit-linear-gradient(top,rgba(0,0,0,0) 10%,rgba(0,0,0,0.5) 60%);  
+	 -webkit-box-reflect:below 5px -webkit-linear-gradient(top,rgba(0,0,0,0) 10%,rgba(0,0,0,0.5) 60%);
 	}
 /*底座光环*/
-#wrap p{ 
-	width:1200px; 
-	height: 1200px; 
-	/*径向渐变 (从哪里开始) 扩散程度 
+#wrap p{
+	width:1200px;
+	height: 1200px;
+	/*径向渐变 (从哪里开始) 扩散程度
 	开始时候的颜色  结束时候的颜色*/
 	background:-webkit-radial-gradient(center center,600px 600px,rgba(242,23,134,0.2), rgba(0,0,0,0));
-	border-radius:100%; 
-	position: absolute; 
+	border-radius:100%;
+	position: absolute;
 	top:102%;
-    left: 50%; 
-    margin-left:-600px; 
-    margin-top: -600px; 
-    transform: rotateX(90deg); 	 
+    left: 50%;
+    margin-left:-600px;
+    margin-top: -600px;
+    transform: rotateX(90deg);
 }
 </style>
 <script type="text/javascript">
@@ -96,7 +96,7 @@ window.onload = function(){
 		var ev = ev||window.event;
 		lastX = ev.clientX;
 		lastY = ev.clientY;
-		
+
 		//鼠标移动
 		this.onmousemove = function(ev){
 			var ev = ev||window.event;
@@ -123,9 +123,9 @@ window.onload = function(){
 		this.onmouseup = function(){
 			this.onmousemove = null;
 			timer = setInterval(function(){
-				minuseX *= 0.95; //让距离越来越小，乘以摩擦系数
-				//让差值无限次乘以一个小数  值会无限接近零 但不会等于零
-                //console.log(minuseX)
+				minuseX *= 0.95; ///让距离越来越小，乘以摩擦系数
+				///让差值无限次乘以一个小数  值会无限接近零 但不会等于零
+                ///console.log(minuseX)
 				minuseY *= 0.95;
 				roY += minuseX*0.2;
 				roX -= minuseY*0.1;
@@ -136,7 +136,7 @@ window.onload = function(){
 
 			},13)
 		}
-		return false; //取消鼠标默认事件
+		return false; ///取消鼠标默认事件
 	}
 }
 </script>
@@ -144,18 +144,18 @@ window.onload = function(){
 <body>
 <div id="perspective">
 	<div id="wrap">
-		<img src="/images/1.jpg" alt="">
-		<img src="/images/2.jpg" alt="">
-		<img src="/images/3.jpg" alt="">
-		<img src="/images/4.jpg" alt="">
-		<img src="/images/5.jpg" alt="">
-		<img src="/images/6.jpg" alt="">
-		<img src="/images/7.jpg" alt="">
-		<img src="/images/8.jpg" alt="">
-		<img src="/images/9.jpg" alt="">
-		<img src="/images/10.jpg" alt="">
-		<img src="/images/11.jpg" alt="">
-		<img src="/images/12.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0001.jpeg" alt="">
+		<img src="/website/web_collect/my.pic/images/0002.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0003.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0004.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0005.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0006.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0007.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0008.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0009.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0010.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0011.jpg" alt="">
+		<img src="/website/web_collect/my.pic/images/0012.jpg" alt="">
 		<p></p>
 	</div>
 </div>
