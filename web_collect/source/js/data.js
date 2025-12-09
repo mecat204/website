@@ -1,6 +1,6 @@
 var arr = [
     {
-        "href":"/website/web_collect/ebook.html",
+        "href":"/website/web_collect/ebooks.html",
 		"cont":"菜根谭"
     },
     {
