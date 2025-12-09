@@ -1,5 +1,9 @@
 var arr = [
     {
+        "href":"/website/web_collect/ebook.html",
+		"cont":"菜根谭"
+    },
+    {
         "href":"/website/web_collect/3d_photo.html",
 		"cont":"3D相册·凡人修仙传"
     },
